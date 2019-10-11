@@ -2,11 +2,11 @@ import UIKit
 
 class DeliveryItemListViewController: UIViewController {
 
-    //MARK:- Constants
+    // MARK: - Constants
     let estimatedRowHeight: CGFloat = 100
     let cellUniqueIdentifier = "Cell"
 
-    //MARK:- Variables
+    // MARK: - Variables
     var tableView = UITableView()
     var refreshControl: UIRefreshControl = {
         let refControl = UIRefreshControl()
@@ -18,66 +18,65 @@ class DeliveryItemListViewController: UIViewController {
         return loader
     }()
     
-    var viewModelObject = DeliveryItemViewModel()
+    var viewModel = DeliveryItemViewModel()
 
-    //MARK:- View Did Load
+    // MARK: - View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationBar()
         self.setupTableView()
         self.layoutTableView()
         self.setupCompletionHandlers()
-        self.viewModelObject.loadDataOnTableView()
+        self.viewModel.loadData()
     }
     
-    //MARK:- Setup Navigation Bar
+    // MARK: - Setup Navigation Bar
     func setupNavigationBar() {
-        self.title = LocalizedString.ALLITEMVCTITLE
+        self.title = LocalizedString.DELIVERYITEMSVCTITLE
     }
     
-    //MARK:- Setup Table View
+    // MARK: - Setup Table View
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(DeliveryItemTableViewCell.self, forCellReuseIdentifier: cellUniqueIdentifier)
+        tableView.register(DeliveryItemCell.self, forCellReuseIdentifier: cellUniqueIdentifier)
         tableView.separatorStyle = .none
         tableView.tableFooterView = tableFooterLoader
         refreshControl.addTarget(self, action: #selector(self.refreshTableViewData), for: .valueChanged)
         tableView.refreshControl = refreshControl
     }
     
-    //MARK:- Add Constraints to TableView
+    // MARK: - Add Constraints To TableView
     func layoutTableView() {
         self.view.backgroundColor = UIColor.white
         self.view.addSubview(tableView)
         
         //Adding constraint to Map View
-        let cornerAnchorForTableView = ConrnerAnchor(top    : (self.topLayoutGuide.bottomAnchor, zeroPaddingConstant),
-                                                   bottom   : (self.bottomLayoutGuide.topAnchor, zeroPaddingConstant),
-                                                   left     : (self.view.leftAnchor, zeroPaddingConstant),
-                                                   right    : (self.view.rightAnchor, zeroPaddingConstant)
+        let cornerAnchorForTableView = ConrnerAnchor(top    : (self.topLayoutGuide.bottomAnchor, ViewRelatedConstants.zeroPaddingConstant),
+                                                   bottom   : (self.bottomLayoutGuide.topAnchor, ViewRelatedConstants.zeroPaddingConstant),
+                                                   left     : (self.view.leftAnchor, ViewRelatedConstants.zeroPaddingConstant),
+                                                   right    : (self.view.rightAnchor, ViewRelatedConstants.zeroPaddingConstant)
         )
         tableView.addConstraints(cornerConstraints: cornerAnchorForTableView,
                                centerY  : nil,
                                centerX  : nil,
-                               height   : zeroPaddingConstant,
-                               width    : zeroPaddingConstant
+                               height   : ViewRelatedConstants.zeroPaddingConstant,
+                               width    : ViewRelatedConstants.zeroPaddingConstant
         )
     }
     
-    //MARK: - Setup Completion Handlers
+    // MARK: - Setup Completion Handlers
     func setupCompletionHandlers() {
-        self.completionWithSuccess()
-        self.completionWithNoData()
-        self.completionWithError()
-        self.failureWithoutError()
+        self.handleCompletionWithSuccess()
+        self.handleCompletionWithNoData()
+        self.handleCompletionWithError()
         self.handleInternetError()
         self.handleNextPageLoading()
     }
     
-    //MARK: - Completion With Success
-    func completionWithSuccess() {
-        viewModelObject.completionWithSuccess = {[weak self] in
+    // MARK: - Handle Completion With Success
+    func handleCompletionWithSuccess() {
+        viewModel.handleCompletionWithSuccess = {[weak self] in
             DispatchQueue.main.async {
                 self?.tableView.isHidden = false
                 self?.tableView.reloadData()
@@ -86,61 +85,42 @@ class DeliveryItemListViewController: UIViewController {
         }
     }
     
-    //MARK: - Completion With No Data
-    func completionWithNoData() {
-        viewModelObject.completionWithNoData = {[weak self] in
+    // MARK: - Handle Completion With No Data
+    func handleCompletionWithNoData() {
+        viewModel.handleCompletionWithNoData = {[weak self] in
             DispatchQueue.main.async {
-                CommonClass.shared.showAlertWithTitle(messageBody: LocalizedString.NORESULTFOUND, showRetry: false, okBlock: {
+                CommonClass.shared.showAlertWithTitle(messageBody: LocalizedString.NORESULTFOUND, okBlock: {
                     self?.updateLoader()
-                }, retryBlock: {
-                    //
                 })
             }
         }
     }
     
-    //MARK:- Completion with Error
-    func completionWithError() {
-        viewModelObject.completionWithError = {[weak self] error in
+    // MARK: - Handle Completion with Error
+    func handleCompletionWithError() {
+        viewModel.handleCompletionWithError = {[weak self] error in
             DispatchQueue.main.async {
-                CommonClass.shared.showAlertWithTitle(messageBody: error.localizedDescription, showRetry: true, okBlock: {
+                CommonClass.shared.showAlertWithTitle(messageBody: error.localizedDescription, okBlock: {
                     self?.updateLoader()
-                }, retryBlock: {
-                    self?.refreshTableViewData()
                 })
             }
         }
     }
     
-    //MARK:- Completion with Error
-    func failureWithoutError() {
-        viewModelObject.failureWithoutError = {[weak self] in
-            DispatchQueue.main.async {
-                CommonClass.shared.showAlertWithTitle(messageBody: LocalizedString.SERVERERROR, showRetry: false, okBlock: {
-                    self?.updateLoader()
-                }, retryBlock: {
-                    //
-                })
-            }
-        }
-    }
-    
-    //MARK: - Completion Internet error
+    // MARK: - Handle Internet error
     func handleInternetError() {
-        viewModelObject.handleInternetError = {[weak self] in
+        viewModel.handleInternetError = {[weak self] in
             DispatchQueue.main.async {
-                CommonClass.shared.showAlertWithTitle(messageBody: LocalizedString.NOINTERNETCONNECTION, showRetry: true, okBlock: {
+                CommonClass.shared.showAlertWithTitle(messageBody: LocalizedString.NOINTERNETCONNECTION, okBlock: {
                     self?.updateLoader()
-                }, retryBlock: {
-                    self?.refreshTableViewData()
                 })
             }
         }
     }
     
-    //MARK: - Completion Next Page Loading 
+    // MARK: - Completion Next Page Loading
     func handleNextPageLoading() {
-        viewModelObject.handleNextPageLoading = {[weak self] in
+        viewModel.handleNextPageLoading = {[weak self] in
             DispatchQueue.main.async {
                 self?.tableView.tableFooterView?.isHidden = false
                 self?.tableFooterLoader.startAnimating()
@@ -148,12 +128,12 @@ class DeliveryItemListViewController: UIViewController {
         }
     }
     
-    //MARK:- Refresh Table View Data
+    // MARK: - Refresh Table View Data
     @objc func refreshTableViewData() {
-        viewModelObject.refreshTableViewData()
+        viewModel.refreshData()
     }
     
-    //MARK:- Hide Loader
+    // MARK: - Update Loader
     func updateLoader() {
         DispatchQueue.main.async {
             self.tableView.tableFooterView?.isHidden = true
@@ -163,15 +143,15 @@ class DeliveryItemListViewController: UIViewController {
         }
     }
     
-    //MARK:- Navigate to Item Detail Screen
-    func navigateToItemDetail(withItemDetailVM itemDetailVM: DeliveryDetailViewModel) {
+    // MARK: - Navigate to Delivery Item Detail Screen
+    func navigateToDeliveryItemDetail(withItemDetailVM itemDetailVM: DeliveryDetailViewModel) {
         let itemDetailVC = DeliveryDetailViewController()
         itemDetailVC.itemDetailVM = itemDetailVM
         self.navigationController?.pushViewController(itemDetailVC, animated: true)
     }
 }
 
-//MARK:- Extension Table View Delegate And Datasource Methods
+// MARK: - Extension For Table View Delegate And Datasource Methods
 extension DeliveryItemListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return estimatedRowHeight
@@ -182,22 +162,22 @@ extension DeliveryItemListViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModelObject.allItemArray.count
+        return viewModel.deliveries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellUniqueIdentifier, for: indexPath) as! DeliveryItemTableViewCell
-        cell.plotDataOnCell(withCellItem : viewModelObject.allItemArray[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellUniqueIdentifier, for: indexPath) as! DeliveryItemCell
+        cell.plotDataOnCell(withCellItem : viewModel.deliveries[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        self.viewModelObject.checkTableViewBottomDrag(indexPath.row)
+        self.viewModel.checkBottomDragging(indexPath.row)
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let viewModel = self.viewModelObject.getItemDetailViewModel(fromIndex: indexPath.row) {
-            self.navigateToItemDetail(withItemDetailVM: viewModel)
+        if let viewModel = self.viewModel.getDeliveryDetailViewModel(fromIndex: indexPath.row) {
+            self.navigateToDeliveryItemDetail(withItemDetailVM: viewModel)
         }
     }
 }

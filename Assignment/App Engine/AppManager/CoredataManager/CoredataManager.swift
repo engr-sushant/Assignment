@@ -9,7 +9,7 @@ class CoreDataManager {
     }()
 
     lazy var persistentContainer: NSPersistentContainer = {
-        let cont = NSPersistentContainer(name: StackName)
+        let cont = NSPersistentContainer(name: CoredataConstants.stackName)
         cont.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
                 fatalError("\(error), \(error.userInfo)")
@@ -18,33 +18,31 @@ class CoreDataManager {
         return cont
     }()
     
-    //MARK:- Process coredata model into Item model
-    private func processCoredataModelIntoItem(_ dbModelArray: [EntityItem]) -> [DeliveryItem] {
-        var items = [DeliveryItem]()
-        for dbModel in dbModelArray {
-            items.append(DeliveryItem.init(withDBModel: dbModel))
-        }
-        return items
+    // MARK: - Convert Local DB Item Model Into Delivery Item model
+    private func convertLocalDBItemModelIntoDeliveryItemModel(dbModel: EntityItem) -> DeliveryItem {
+        let location = Location(latitude: dbModel.location?.latitude, longitude: dbModel.location?.longitude, address: dbModel.location?.address)
+        let item = DeliveryItem.init(id: (Int(dbModel.id)), itemDescription: dbModel.itemDescription, imageUrl: dbModel.imageUrl ?? "", location: location)
+        return item
     }
 }
 
-//MARK: - Extension CoreDataManger
+// MARK: - Extension CoreDataManger
 extension CoreDataManager: CoredataManagerProtocol {
     
-    //MARK:- Save Item to Codedata
-    func saveItemToLocalDB(items: [DeliveryItem]) {
+    // MARK: - Save Delivery Item To Local DB
+    func saveDeliveryItemToLocalDB(items: [DeliveryItem]) {
         persistentContainer.performBackgroundTask { (context) in
             for item in items {
-                let entityItemContext = EntityItem(context: context)
-                entityItemContext.id = Int16(item.id!)
-                entityItemContext.itemDescription = item.itemDescription!
-                entityItemContext.imageUrl = item.imageUrl!
-                let locationContext = EntityLocation(context: context)
-                if let lat = item.location?.latitude, let lng = item.location?.longitude, let address = item.location?.address {
-                    locationContext.latitude = lat
-                    locationContext.longitude = lng
-                    locationContext.address = address
-                    entityItemContext.location = locationContext
+                let entityItem = EntityItem(context: context)
+                entityItem.id = Int16(item.id)
+                entityItem.itemDescription = item.description!
+                entityItem.imageUrl = item.imageUrl
+                let location = EntityLocation(context: context)
+                if let lat = item.location?.lat, let lng = item.location?.lng, let address = item.location?.address {
+                    location.latitude = lat
+                    location.longitude = lng
+                    location.address = address
+                    entityItem.location = location
                 }
             }
             do {
@@ -55,10 +53,10 @@ extension CoreDataManager: CoredataManagerProtocol {
         }
     }
     
-    // MARK:- Delete Item from Coredata
-    func deleteItemData(completion: @escaping ((Error?) -> Void)) {
+    // MARK: - Delete Delivery Item From Local DB
+    func deleteDeliveryItemFromLocalDB(completion: @escaping ((Error?) -> Void)) {
         let managedObjectContext = persistentContainer.newBackgroundContext()
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: EntityNameItem)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CoredataConstants.entityNameItem)
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
             try managedObjectContext.execute(batchDeleteRequest)
@@ -68,21 +66,21 @@ extension CoreDataManager: CoredataManagerProtocol {
         }
     }
     
-    // MARK:- Fetch Item from Coredata
-    func fetchItemFromDatabase(offset: Int, completion: @escaping (([DeliveryItem], Error?) -> Void)) {
-        let items = [DeliveryItem]()
+    // MARK: - Fetch Delivery Item From Local DB
+    func fetchDeliveryItemFromLocalDB(offset: Int, completion: @escaping (([DeliveryItem], Error?) -> Void)) {
+        var items = [DeliveryItem]()
         let managedContext = self.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: EntityNameItem)
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: CoredataConstants.entityNameItem)
         fetchRequest.fetchOffset = offset
-        fetchRequest.fetchLimit = FetchLimit
+        fetchRequest.fetchLimit = APIQueryConstants.fetchLimit
         do {
             let result = try managedContext.fetch(fetchRequest)
-            guard let res = result as? [EntityItem] else {
+            guard result as? [EntityItem] != nil else {
                 completion(items, nil)
                 return
             }
-            completion(processCoredataModelIntoItem(res), nil)
-            
+            items = result.map { self.convertLocalDBItemModelIntoDeliveryItemModel(dbModel: $0 as! EntityItem) }
+            completion(items, nil)
         } catch let error as NSError {
             completion(items, error)
         }

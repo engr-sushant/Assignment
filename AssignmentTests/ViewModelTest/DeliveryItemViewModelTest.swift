@@ -5,77 +5,51 @@ import CoreData
 class DeliveryItemViewModelTest: XCTestCase {
 
     // MARK: - VARIABLES
-    var allItemVM: DeliveryItemViewModel?
+    var viewModel: DeliveryItemViewModel?
     var mockapimanager: MockAPIManager!
     var mockcoredatamanager = MockCoreDataManager.mocksharedManager
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         super.setUp()
-        allItemVM = DeliveryItemViewModel()
-        allItemVM?.coreDataManager = mockcoredatamanager
+        viewModel = DeliveryItemViewModel()
+        viewModel?.coreDataManager = mockcoredatamanager
         mockcoredatamanager.shouldReturnErr = false
         mockcoredatamanager.shouldReturnEmptyData = false
         mockapimanager = MockAPIManager()
-        allItemVM?.apiManager = mockapimanager
+        viewModel?.apiManager = mockapimanager
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        allItemVM = nil
+        viewModel = nil
         mockapimanager = nil
         super.tearDown()
     }
-    
-    func testLoadDataFromServerWithSuccess() {
-        if let allItemVM = allItemVM {
-            mockcoredatamanager.shouldReturnEmptyData = true //to make sure we do not get data from database and we hit api to get data
-            allItemVM.isLoading = false
-            allItemVM.loadDataOnTableView()
-            XCTAssertTrue(allItemVM.allItemArray.count == 1)
-        }
-    }
-    
-    func testRefreshWithSuccess() {
-        if let allItemVM = allItemVM {
-            let item = getDummyItem()
-            allItemVM.allItemArray = [item, item] //on refresh array count will change
-            mockcoredatamanager.shouldReturnEmptyData = true
-            allItemVM.refreshTableViewData()
-            XCTAssertTrue(allItemVM.allItemArray.count == 1)
-        }
-    }
-    
+        
     func testItemDetailModel() {
-        allItemVM?.allItemArray = [getDummyItem()]
-        let itemDetailVM = allItemVM?.getItemDetailViewModel(fromIndex: 0)
+        viewModel?.deliveries = [getDummyItem()]
+        let itemDetailVM = viewModel?.getDeliveryDetailViewModel(fromIndex: 0)
         XCTAssertNotNil(itemDetailVM?.item)
     }
     
     func testNilItemDetailModel() {
-        allItemVM?.allItemArray = [getDummyItem()]
-        let itemDetailVM = allItemVM?.getItemDetailViewModel(fromIndex: 1)
+        viewModel?.deliveries = [getDummyItem()]
+        let itemDetailVM = viewModel?.getDeliveryDetailViewModel(fromIndex: 1)
         XCTAssertNil(itemDetailVM?.item)
     }
 
 }
 
-//MARK:- Extension DeliveryItemViewModelTest
+// MARK: - Extension DeliveryItemViewModelTest
 extension DeliveryItemViewModelTest {
-    //MARK:- Get Dummy Item For Test
+    
+    // MARK: - Get Dummy Item For Test
     func getDummyItem() -> DeliveryItem {
-        let itemDic: [String: Any] = [kId: 38,
-                                      kDescription  : "Deliver food to Eric",
-                                      kImageUrl     : "https://s3-ap-southeast-1.amazonaws.com/lalamove-mock-api/images/pet-5.jpeg",
-                                      kLocation     : [kLatitude    : 22.319181,
-                                                       kLongitude   : 114.170008,
-                                                       kAddress     : "Mong Kok"
-            ]
-        ]
-        return DeliveryItem.init(withJson: itemDic)
+        let location = Location.init(latitude: 22.319181, longitude: 114.170008, address: "Mong Kok")
+        return DeliveryItem.init(id: 38, itemDescription: "Deliver food to Eric", imageUrl: "https://s3-ap-southeast-1.amazonaws.com/lalamove-mock-api/images/pet-5.jpeg", location: location)
     }
 }
-
 
 // MARK: - MOCK API MANAGER
 class MockAPIManager: APIManagerProtocol {
@@ -83,29 +57,23 @@ class MockAPIManager: APIManagerProtocol {
     var errorInResp = false
     
     // MARK: - API TO GET ITEM LIST FROM SERVER
-    func getItemsFromServer(offset: Int, limit: Int, completionBlock: @escaping APIManager.GetItemsFromServerCompletion) {
+    func getDeliveriesFromServer(offset: Int, limit: Int, completionBlock: @escaping APIManager.GetDeliveriesFromServerCompletion) {
         if errorInResp {
             let error = NSError(domain: "Error", code: 400, userInfo: nil)
-            completionBlock(nil,error)
+            completionBlock(.failure(error))
             return
         } else {
-            let item = getDummyItem()
-            completionBlock([item],nil)
+            let deliveryItem = getDummyItem()
+            completionBlock(.success([deliveryItem]))
         }
     }
     
     func getDummyItem() -> DeliveryItem {
-        let itemDic: [String: Any] = [kId: 38,
-                                      kDescription  : "Deliver food to Eric",
-                                      kImageUrl     : "https://s3-ap-southeast-1.amazonaws.com/lalamove-mock-api/images/pet-5.jpeg",
-                                      kLocation     : [kLatitude    : 22.319181,
-                                                       kLongitude   : 114.170008,
-                                                       kAddress     : "Mong Kok"
-            ]
-        ]
-        return DeliveryItem.init(withJson: itemDic)
+        let location = Location.init(latitude: 22.319181, longitude: 114.170008, address: "Mong Kok")
+        return DeliveryItem.init(id: 38, itemDescription: "Deliver food to Eric", imageUrl: "https://s3-ap-southeast-1.amazonaws.com/lalamove-mock-api/images/pet-5.jpeg", location: location)
     }
 }
+
 // MARK: - MOCK CORE DATA MANAGER
 class MockCoreDataManager: CoredataManagerProtocol {
     
@@ -113,7 +81,7 @@ class MockCoreDataManager: CoredataManagerProtocol {
     var shouldReturnEmptyData: Bool!
     var shouldReturnErr: Bool!
     
-    func fetchItemFromDatabase(offset: Int, completion: @escaping (([DeliveryItem], Error?) -> Void)) {
+    func fetchDeliveryItemFromLocalDB(offset: Int, completion: @escaping (([DeliveryItem], Error?) -> Void)) {
         // Failure
         guard !shouldReturnErr else {
             //return error
@@ -129,23 +97,16 @@ class MockCoreDataManager: CoredataManagerProtocol {
         }
         
         //return data
-        let itemDic: [String: Any] = [kId: 38,
-                                      kDescription  : "Deliver food to Eric",
-                                      kImageUrl     : "https://s3-ap-southeast-1.amazonaws.com/lalamove-mock-api/images/pet-5.jpeg",
-                                      kLocation     : [kLatitude    : 22.319181,
-                                                       kLongitude   : 114.170008,
-                                                       kAddress     : "Mong Kok"
-            ]
-        ]
-        let item = DeliveryItem.init(withJson: itemDic)
+        let location = Location.init(latitude: 22.319181, longitude: 114.170008, address: "Mong Kok")
+        let item = DeliveryItem.init(id: 38, itemDescription: "Deliver food to Eric", imageUrl: "https://s3-ap-southeast-1.amazonaws.com/lalamove-mock-api/images/pet-5.jpeg", location: location)
         completion([item], nil)
     }
     
-    func deleteItemData(completion: @escaping ((Error?) -> Void)) {
+    func deleteDeliveryItemFromLocalDB(completion: @escaping ((Error?) -> Void)) {
         //mock delete
     }
     
-    func saveItemToLocalDB(items: [DeliveryItem]) {
+    func saveDeliveryItemToLocalDB(items: [DeliveryItem]) {
         //mock save
     }
 }

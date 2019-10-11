@@ -6,7 +6,7 @@
 # INSTALLATION
 
 •    Open Podfile from project directory.
-•    Open terminal and cd to the directory containing the Podfile.
+\n•    Open terminal and cd to the directory containing the Podfile.
 •    Run the "pod install" command. (Incase of error: [!] CocoaPods could not find compatible versions for pod "MaterialComponents/ActivityIndicator".  Please use command: pod install --repo-update)
 •    Open xcworkspace 
 

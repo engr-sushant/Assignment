@@ -1,7 +1,7 @@
 "APP_NAME" = "Assignment";
 
-"ALL_ITEMS_VC_TITLE" = "Delivery Item List";
-"ITEM_DETAIL_VC_TITLE" = "Delivery Item Detail";
+"DELIVERY_ITEMS_VC_TITLE" = "Delivery Items";
+"DELIVERY_DETAIL_VC_TITLE" = "Delivery Detail";
 
 "NO_RESULT_FOUND" = "No Result Found";
 "NO_INTERNET_CONNECTION" = "Please check your internet connection";

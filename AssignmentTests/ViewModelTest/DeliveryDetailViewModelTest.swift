@@ -22,19 +22,13 @@ class DeliveryDetailViewModelTest: XCTestCase {
     }
 }
 
-//MARK:- Extension DeliveryDetailViewModelTest
+// MARK: - Extension DeliveryDetailViewModelTest
 extension DeliveryDetailViewModelTest {
-    //MARK:- Get Dummy Item For Test
+    
+    // MARK: - Get Dummy Item For Test
     func getDummyItem() -> DeliveryItem {
-        let itemDic: [String: Any] = [kId: 38,
-                                      kDescription  : "Deliver food to Eric",
-                                      kImageUrl     : "https://s3-ap-southeast-1.amazonaws.com/lalamove-mock-api/images/pet-5.jpeg",
-                                      kLocation     : [kLatitude    : 22.319181,
-                                                       kLongitude   : 114.170008,
-                                                       kAddress     : "Mong Kok"
-            ]
-        ]
-        return DeliveryItem.init(withJson: itemDic)
+        let location = Location.init(latitude: 22.319181, longitude: 114.170008, address: "Mong Kok")
+        return DeliveryItem.init(id: 38, itemDescription: "Deliver food to Eric", imageUrl: "https://s3-ap-southeast-1.amazonaws.com/lalamove-mock-api/images/pet-5.jpeg", location: location)
     }
 }
 

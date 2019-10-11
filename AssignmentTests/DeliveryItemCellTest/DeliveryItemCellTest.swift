@@ -3,12 +3,12 @@ import XCTest
 
 class DeliveryItemCellTest: XCTestCase {
 
-    var itemCell: DeliveryItemTableViewCell!
+    var itemCell: DeliveryItemCell!
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         super.setUp()
-        itemCell = DeliveryItemTableViewCell()
+        itemCell = DeliveryItemCell()
     }
 
     override func tearDown() {
@@ -17,23 +17,16 @@ class DeliveryItemCellTest: XCTestCase {
         super.tearDown()
     }
     
-    func testPlotDataWithNilImageURL() {
-        var item = getDummyItem()
-        item.imageUrl = nil
-        itemCell.plotDataOnCell(withCellItem: item)
-        XCTAssertTrue(itemCell.cellImageView.image == AppPlaceholderImage)
-    }
-    
     func testPlotDataWithNilLocation() {
         var item = getDummyItem()
         item.location = nil
         itemCell.plotDataOnCell(withCellItem: item)
-        XCTAssertTrue(itemCell.descriptionLbl.text == item.itemDescription!)
+        XCTAssertTrue(itemCell.descriptionLbl.text == item.description!)
     }
     
     func testPlotDataWithNilItem() {
         var item = getDummyItem()
-        item.itemDescription = nil
+        item.description = nil
         item.location?.address = nil
         itemCell.plotDataOnCell(withCellItem: item)
         XCTAssertTrue(itemCell.descriptionLbl.text == kEmptyString)
@@ -47,19 +40,13 @@ class DeliveryItemCellTest: XCTestCase {
 
 }
 
-//MARK:- Extension DeliveryItemCellTest
+// MARK: - Extension DeliveryItemCellTest
 extension DeliveryItemCellTest {
-    //MARK:- Get Dummy Item For Test
+    
+    // MARK: - Get Dummy Item For Test
     func getDummyItem() -> DeliveryItem {
-        let itemDic: [String: Any] = [kId: 38,
-                                      kDescription  : "Deliver food to Eric",
-                                      kImageUrl     : "https://s3-ap-southeast-1.amazonaws.com/lalamove-mock-api/images/pet-5.jpeg",
-                                      kLocation     : [kLatitude    : 22.319181,
-                                                       kLongitude   : 114.170008,
-                                                       kAddress     : "Mong Kok"
-            ]
-        ]
-        return DeliveryItem.init(withJson: itemDic)
+        let location = Location.init(latitude: 22.319181, longitude: 114.170008, address: "Mong Kok")
+        return DeliveryItem.init(id: 38, itemDescription: "Deliver food to Eric", imageUrl: "https://s3-ap-southeast-1.amazonaws.com/lalamove-mock-api/images/pet-5.jpeg", location: location)
     }
 }
 

@@ -2,13 +2,11 @@ import Foundation
 
 protocol APIManagerProtocol {
 
-    typealias GetItemsFromServerCompletion = (_ items : [DeliveryItem]?,_ error: Error?) -> Void
+    typealias GetDeliveriesFromServerCompletion = ((Result<[DeliveryItem], Error>) -> Void)
 
     /*
-    Use this method to fetch all delivery items from server.
+    Use this method to get deliveries from server.
     **/
-    func getItemsFromServer(offset              : Int,
-                            limit               : Int,
-                            completionBlock     : @escaping GetItemsFromServerCompletion)
+    func getDeliveriesFromServer(offset: Int, limit: Int, completionBlock: @escaping GetDeliveriesFromServerCompletion)
 }
 

@@ -3,58 +3,43 @@ import Alamofire
 
 class APIManager {
 
-    internal typealias WebServiceCompletion = (_ response : DataResponse<Any>) -> Void
-    internal typealias GetItemsFromServerCompletion = (_ items : [DeliveryItem]?,_ error: Error?) -> Void
-    internal typealias WebServiceFailure = (Error?) -> Void
+    internal typealias GetDeliveriesFromServerCompletion = ((Result<[DeliveryItem], Error>) -> Void)
     
-    //MARK:- BASEURL
+    // MARK: - BASEURL
     let BASEURL: String = "https://mock-api-mobile.dev.lalamove.com/"
 
-    public enum apiType : String {
+    public enum apiName : String {
         
-        case fetchAllItems
+        case deliveries
         
         var description: String {
             switch self {
-            case .fetchAllItems     : return "deliveries"
-                
+            case .deliveries     : return "deliveries"
             }
         }
     }
     
-    //MARK:- Use This Method To Make API Calls
-    private class func apiService(url                       : String,
-                                  parameter                 : [String: Any],
-                                  completion                : @escaping WebServiceCompletion) {
+    // MARK: - Use this method to make api calls
+    private class func apiService<T: Decodable>(url                 : String,
+                                                parameter           : [String: Any],
+                                                completionHandler   : @escaping ((Result<T, Error>) -> Void)) {
         
-        AF.request(url, method: .get, parameters: parameter).responseJSON { (response) in
-            completion(response)
+        AF.request(url, method: .get, parameters: parameter).responseDecodable(decoder: JSONDecoder()) { (response: DataResponse<T>)  in
+            completionHandler(response.result)
         }
     }
 }
 
-//MARK: - Extension APIManagerProtocol
+// MARK: - Extension APIManagerProtocol
 extension APIManager: APIManagerProtocol {
     
-    //MARK:- Fetch All Delivery Items From Server
-    func getItemsFromServer(offset              : Int,
-                            limit               : Int,
-                            completionBlock     : @escaping GetItemsFromServerCompletion) {
+    //MARK: - Get Deliveries From Server
+    func getDeliveriesFromServer(offset             : Int,
+                                 limit              : Int,
+                                 completionBlock    : @escaping GetDeliveriesFromServerCompletion) {
         
-        let url = BASEURL + APIManager.apiType.fetchAllItems.description
-        let parameters = [keyOffset: offset, keyLimit: limit]
-        
-        APIManager.apiService(url: url, parameter: parameters) { (data) in
-            if let json = data.value as? [[String: Any]] {
-                var allItems = [DeliveryItem]()
-                for item in json {
-                    allItems.append(DeliveryItem.init(withJson: item))
-                }
-                completionBlock(allItems, nil)
-            }
-            else {
-                completionBlock(nil, data.error ?? nil)
-            }
-        }
+        let url = BASEURL + APIManager.apiName.deliveries.description
+        let parameters: [String: Any] = [APIQueryConstants.keyOffset: offset, APIQueryConstants.keyLimit: limit]
+        APIManager.apiService(url: url, parameter: parameters, completionHandler: completionBlock)
     }
 }

@@ -11,7 +11,7 @@ class CommonClass: NSObject {
     var progressView: MDCActivityIndicator!
     var isProgressViewAdded = false
 
-    //MARK:- Use this method to Check Internet Connection
+    // MARK: - Use this method to check internet connection
     func isInternetConnected() -> Bool {
         var isInternetConnected = false
         if let manager = NetworkReachabilityManager() {
@@ -20,23 +20,17 @@ class CommonClass: NSObject {
         return isInternetConnected
     }
     
-    //MARK:- Use this method to Show Alert
-    func showAlertWithTitle(messageBody: String, showRetry:Bool, okBlock: @escaping (() -> Void), retryBlock: @escaping (() -> Void)) {
+    // MARK: - Use this method to show alert
+    func showAlertWithTitle(messageBody: String, okBlock: @escaping (() -> Void)) {
         let alertVC = UIAlertController(title: LocalizedString.APPNAME, message: messageBody, preferredStyle: .alert)
         let okAction = UIAlertAction(title: LocalizedString.OK, style: .default) { (_) in
             okBlock()
         }
-        let retryAction = UIAlertAction(title: LocalizedString.RETRY, style: .default) { (_) in
-            retryBlock()
-        }
         alertVC.addAction(okAction)
-        if showRetry {
-            alertVC.addAction(retryAction)
-        }
-        SharedAppDelegate.window?.rootViewController?.present(alertVC, animated: true, completion: nil)
+        sharedAppDelegate.window?.rootViewController?.present(alertVC, animated: true, completion: nil)
     }
         
-    //MARK:- Use this method to Show Loader
+    // MARK: - Use this method to show loader
     func showLoader() {
         if isProgressViewAdded {
            return
@@ -44,19 +38,19 @@ class CommonClass: NSObject {
         isProgressViewAdded = true
         DispatchQueue.main.async {
             self.progressView = MDCActivityIndicator()
-            self.progressView.radius = progressViewRadius
-            self.progressView.strokeWidth = progressViewStrokeWidth
-            self.progressView.alpha = progressViewStrokeWidth
-            if let backgroundView = SharedAppDelegate.window?.rootViewController?.view {
+            self.progressView.radius = ViewRelatedConstants.progressViewRadius
+            self.progressView.strokeWidth = ViewRelatedConstants.progressViewStrokeWidth
+            self.progressView.alpha = ViewRelatedConstants.progressViewStrokeWidth
+            if let backgroundView = sharedAppDelegate.window?.rootViewController?.view {
                 self.progressView.center = backgroundView.center
             }
             self.progressView.startAnimating()
         }
     }
     
-    //MARK:- Use this method to Hide Loader
+    // MARK: - Use this method to hide loader
     func hideLoader() {
-        if isProgressViewAdded {
+        if !isProgressViewAdded {
             return
         }
         isProgressViewAdded = false

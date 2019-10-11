@@ -12,17 +12,16 @@ class APIManagerTest: XCTestCase {
         super.tearDown()
     }
     
-    func testGetItemsFromServer() {
+    func testGetDeliveriesFromServer() {
         StubObject.request(withPathRegex: "mock-api-mobile.dev.lalamove.com", withResponseFile: "ItemsList.json")
         let expectedResult = expectation(description: "got result")
-        APIManager().getItemsFromServer(offset: 0, limit: FetchLimit) { (items, err) in
-            if let items = items {
-                //Success
+        APIManager().getDeliveriesFromServer(offset: 0, limit: APIQueryConstants.fetchLimit) { (result) in
+            switch result {
+            case .success(let items):
                 XCTAssertEqual(2, items.count)
                 expectedResult.fulfill()
-            } else if let err = err {
-                //Failure
-                XCTAssertNotNil(err, "Failed to get response from server")
+            case .failure(let error):
+                XCTAssertNotNil(error, "Failed to get response from server")
             }
         }
         waitForExpectations(timeout: 60) { error in
@@ -32,17 +31,17 @@ class APIManagerTest: XCTestCase {
         }
     }
     
-    func testGetItemsFromServerWithErr() {
+    func testGetDeliveriesFromServerWithErr() {
         StubObject.request(withPathRegex: "mock-api-mobile.dev.lalamove.com", withResponseFile: "InvalidResponse.json")
         let expectedResult = expectation(description: "got invalid")
-        APIManager().getItemsFromServer(offset: 0, limit: FetchLimit) { (items, err) in
-            if let items = items {
-                XCTAssertNil(items, "error: item should be nil")
-            } else if let err = err {
-                //Failure
-                XCTAssertNotNil(err, "error: Expectation fulfilled with error")
+        APIManager().getDeliveriesFromServer(offset: 0, limit: APIQueryConstants.fetchLimit) { (result) in
+            switch result {
+            case .success( let item):
+                XCTAssertNil(item, "error: item should be nil")
+            case .failure(let error):
+                XCTAssertNotNil(error, "error: Expectation fulfilled with error")
+                expectedResult.fulfill()
             }
-            expectedResult.fulfill()
         }
 
         waitForExpectations(timeout: 60) { error in

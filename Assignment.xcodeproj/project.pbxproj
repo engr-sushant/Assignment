@@ -21,6 +21,8 @@
 		5F5DD7E0234EF06C00EB9707 /* APIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DD7DF234EF06C00EB9707 /* APIManagerProtocol.swift */; };
 		5F5DD7E7234EFB1C00EB9707 /* DeliveryItemViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DD7E6234EFB1C00EB9707 /* DeliveryItemViewModelProtocol.swift */; };
 		5F5DD7ED234EFD9500EB9707 /* DeliveryDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DD7EC234EFD9500EB9707 /* DeliveryDetailViewModelProtocol.swift */; };
+		5F904A1323505C56004835A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F904A1223505C56004835A6 /* Constants.swift */; };
+		5F904A1B23508D47004835A6 /* CommonClassTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F904A1A23508D47004835A6 /* CommonClassTest.swift */; };
 		5FD3C3AB233F845E007495A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD3C3AA233F845E007495A4 /* AppDelegate.swift */; };
 		5FD3C3B3233F845E007495A4 /* Assignment.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5FD3C3B1233F845E007495A4 /* Assignment.xcdatamodeld */; };
 		5FD3C3B5233F845F007495A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FD3C3B4233F845F007495A4 /* Assets.xcassets */; };
@@ -36,7 +38,7 @@
 		5FD3C404233FA003007495A4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD3C403233FA003007495A4 /* Location.swift */; };
 		5FD3C407233FA52B007495A4 /* DeliveryItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD3C406233FA52B007495A4 /* DeliveryItemListViewController.swift */; };
 		5FD7FA9E2341F87B006DCA2B /* DeliveryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD7FA9D2341F87B006DCA2B /* DeliveryItemViewModel.swift */; };
-		5FD7FAA12341F8DC006DCA2B /* DeliveryItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD7FAA02341F8DC006DCA2B /* DeliveryItemTableViewCell.swift */; };
+		5FD7FAA12341F8DC006DCA2B /* DeliveryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD7FAA02341F8DC006DCA2B /* DeliveryItemCell.swift */; };
 		5FD7FAA523431ECE006DCA2B /* DeliveryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD7FAA423431ECE006DCA2B /* DeliveryDetailViewModel.swift */; };
 		5FD7FAA723431F20006DCA2B /* DeliveryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD7FAA623431F20006DCA2B /* DeliveryDetailViewController.swift */; };
 		5FF7F0062344D58900643F99 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FF7F0052344D58900643F99 /* GoogleService-Info.plist */; };
@@ -74,6 +76,8 @@
 		5F5DD7DF234EF06C00EB9707 /* APIManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerProtocol.swift; sourceTree = "<group>"; };
 		5F5DD7E6234EFB1C00EB9707 /* DeliveryItemViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryItemViewModelProtocol.swift; sourceTree = "<group>"; };
 		5F5DD7EC234EFD9500EB9707 /* DeliveryDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryDetailViewModelProtocol.swift; sourceTree = "<group>"; };
+		5F904A1223505C56004835A6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5F904A1A23508D47004835A6 /* CommonClassTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonClassTest.swift; sourceTree = "<group>"; };
 		5FD3C3A7233F845E007495A4 /* Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FD3C3AA233F845E007495A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5FD3C3B2233F845E007495A4 /* Assignment.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Assignment.xcdatamodel; sourceTree = "<group>"; };
@@ -94,7 +98,7 @@
 		5FD3C403233FA003007495A4 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		5FD3C406233FA52B007495A4 /* DeliveryItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryItemListViewController.swift; sourceTree = "<group>"; };
 		5FD7FA9D2341F87B006DCA2B /* DeliveryItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryItemViewModel.swift; sourceTree = "<group>"; };
-		5FD7FAA02341F8DC006DCA2B /* DeliveryItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryItemTableViewCell.swift; sourceTree = "<group>"; };
+		5FD7FAA02341F8DC006DCA2B /* DeliveryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryItemCell.swift; sourceTree = "<group>"; };
 		5FD7FAA423431ECE006DCA2B /* DeliveryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryDetailViewModel.swift; sourceTree = "<group>"; };
 		5FD7FAA623431F20006DCA2B /* DeliveryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryDetailViewController.swift; sourceTree = "<group>"; };
 		5FF7F0052344D58900643F99 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -167,36 +171,12 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		5F5DD7E5234EFAEE00EB9707 /* DeliveryItemViewModelProtocol */ = {
+		5F904A1923508D2B004835A6 /* CommonClassTest */ = {
 			isa = PBXGroup;
 			children = (
-				5F5DD7E6234EFB1C00EB9707 /* DeliveryItemViewModelProtocol.swift */,
+				5F904A1A23508D47004835A6 /* CommonClassTest.swift */,
 			);
-			path = DeliveryItemViewModelProtocol;
-			sourceTree = "<group>";
-		};
-		5F5DD7E8234EFB2900EB9707 /* DeliveryItemViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				5FD7FA9D2341F87B006DCA2B /* DeliveryItemViewModel.swift */,
-			);
-			path = DeliveryItemViewModel;
-			sourceTree = "<group>";
-		};
-		5F5DD7E9234EFD7A00EB9707 /* DeliveryDetailViewModelProtocol */ = {
-			isa = PBXGroup;
-			children = (
-				5F5DD7EC234EFD9500EB9707 /* DeliveryDetailViewModelProtocol.swift */,
-			);
-			path = DeliveryDetailViewModelProtocol;
-			sourceTree = "<group>";
-		};
-		5F5DD7EB234EFD8000EB9707 /* DeliveryDetailViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				5FD7FAA423431ECE006DCA2B /* DeliveryDetailViewModel.swift */,
-			);
-			path = DeliveryDetailViewModel;
+			path = CommonClassTest;
 			sourceTree = "<group>";
 		};
 		5FAFC197234DBE7F0089C798 /* Configuration */ = {
@@ -247,6 +227,7 @@
 				5FDDEAAC2345BDDD00B588A5 /* ViewControllerTest */,
 				5F21F8462345E0D400206837 /* CoredataManagerTest */,
 				5F21F8432345DD4100206837 /* APIManagerTest */,
+				5F904A1923508D2B004835A6 /* CommonClassTest */,
 				5F21F84B2345E6A700206837 /* Resources */,
 				5FD3C3C4233F845F007495A4 /* Info.plist */,
 			);
@@ -306,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				5FD3C3EB233F8A93007495A4 /* AppConstants.swift */,
+				5F904A1223505C56004835A6 /* Constants.swift */,
 			);
 			path = AppConstants;
 			sourceTree = "<group>";
@@ -357,7 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				5FD3C3FE233F9F7E007495A4 /* Delivery Items */,
-				5FD3C3FF233F9F85007495A4 /* Delivery Item Detail */,
+				5FD3C3FF233F9F85007495A4 /* Delivery Detail */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -365,7 +347,7 @@
 		5FD3C3FE233F9F7E007495A4 /* Delivery Items */ = {
 			isa = PBXGroup;
 			children = (
-				5FD7FA9F2341F8A8006DCA2B /* DeliveryItemTableViewCell */,
+				5FD7FA9F2341F8A8006DCA2B /* DeliveryItemCell */,
 				5FD3C400233F9FE2007495A4 /* Model */,
 				5FD7FA9C2341F85A006DCA2B /* View Model */,
 				5FD3C405233FA510007495A4 /* View Controller */,
@@ -373,13 +355,13 @@
 			path = "Delivery Items";
 			sourceTree = "<group>";
 		};
-		5FD3C3FF233F9F85007495A4 /* Delivery Item Detail */ = {
+		5FD3C3FF233F9F85007495A4 /* Delivery Detail */ = {
 			isa = PBXGroup;
 			children = (
 				5FD7FAA323431EA6006DCA2B /* View Model */,
 				5FD7FAA223431EA4006DCA2B /* View Controller */,
 			);
-			path = "Delivery Item Detail";
+			path = "Delivery Detail";
 			sourceTree = "<group>";
 		};
 		5FD3C400233F9FE2007495A4 /* Model */ = {
@@ -402,18 +384,18 @@
 		5FD7FA9C2341F85A006DCA2B /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				5F5DD7E8234EFB2900EB9707 /* DeliveryItemViewModel */,
-				5F5DD7E5234EFAEE00EB9707 /* DeliveryItemViewModelProtocol */,
+				5FD7FA9D2341F87B006DCA2B /* DeliveryItemViewModel.swift */,
+				5F5DD7E6234EFB1C00EB9707 /* DeliveryItemViewModelProtocol.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
 		};
-		5FD7FA9F2341F8A8006DCA2B /* DeliveryItemTableViewCell */ = {
+		5FD7FA9F2341F8A8006DCA2B /* DeliveryItemCell */ = {
 			isa = PBXGroup;
 			children = (
-				5FD7FAA02341F8DC006DCA2B /* DeliveryItemTableViewCell.swift */,
+				5FD7FAA02341F8DC006DCA2B /* DeliveryItemCell.swift */,
 			);
-			path = DeliveryItemTableViewCell;
+			path = DeliveryItemCell;
 			sourceTree = "<group>";
 		};
 		5FD7FAA223431EA4006DCA2B /* View Controller */ = {
@@ -427,8 +409,8 @@
 		5FD7FAA323431EA6006DCA2B /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				5F5DD7EB234EFD8000EB9707 /* DeliveryDetailViewModel */,
-				5F5DD7E9234EFD7A00EB9707 /* DeliveryDetailViewModelProtocol */,
+				5FD7FAA423431ECE006DCA2B /* DeliveryDetailViewModel.swift */,
+				5F5DD7EC234EFD9500EB9707 /* DeliveryDetailViewModelProtocol.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -678,12 +660,13 @@
 				5F5DD7DC234EEB0700EB9707 /* CoredataManagerProtocol.swift in Sources */,
 				5FD7FAA523431ECE006DCA2B /* DeliveryDetailViewModel.swift in Sources */,
 				5FD3C407233FA52B007495A4 /* DeliveryItemListViewController.swift in Sources */,
-				5FD7FAA12341F8DC006DCA2B /* DeliveryItemTableViewCell.swift in Sources */,
+				5FD7FAA12341F8DC006DCA2B /* DeliveryItemCell.swift in Sources */,
 				5FD3C404233FA003007495A4 /* Location.swift in Sources */,
 				5FD3C3EA233F8A50007495A4 /* UIView.swift in Sources */,
 				5FD7FA9E2341F87B006DCA2B /* DeliveryItemViewModel.swift in Sources */,
 				5FD3C3B3233F845E007495A4 /* Assignment.xcdatamodeld in Sources */,
 				5FD3C3DE233F8832007495A4 /* CoredataManager.swift in Sources */,
+				5F904A1323505C56004835A6 /* Constants.swift in Sources */,
 				5F5DD7E0234EF06C00EB9707 /* APIManagerProtocol.swift in Sources */,
 				5FD3C3FA233F951C007495A4 /* APIManager.swift in Sources */,
 				5FD7FAA723431F20006DCA2B /* DeliveryDetailViewController.swift in Sources */,
@@ -706,6 +689,7 @@
 				5F21F8422345D62C00206837 /* DeliveryItemCellTest.swift in Sources */,
 				5F21F84A2345E48F00206837 /* APIManagerTest.swift in Sources */,
 				5F21F8482345E0F500206837 /* CoredataManagerTest.swift in Sources */,
+				5F904A1B23508D47004835A6 /* CommonClassTest.swift in Sources */,
 				5F21F83F2345D1F900206837 /* DeliveryDetailViewModelTest.swift in Sources */,
 				5F21F8382345BEB700206837 /* DeliveryItemViewControllerTest.swift in Sources */,
 			);
