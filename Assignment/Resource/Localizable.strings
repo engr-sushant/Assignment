@@ -1,0 +1,13 @@
+"APP_NAME" = "Assignment";
+
+"ALL_ITEMS_VC_TITLE" = "Delivery Item List";
+"ITEM_DETAIL_VC_TITLE" = "Delivery Item Detail";
+
+"NO_RESULT_FOUND" = "No Result Found";
+"NO_INTERNET_CONNECTION" = "Please check your internet connection";
+"SERVER_ERROR" = "Server error occured. Please try again.";
+
+"MESSAGE" = "Message";
+"OK" = "OK";
+"RETRY" = "Retry";
+"AT" = " at ";
