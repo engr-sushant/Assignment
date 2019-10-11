@@ -2,18 +2,27 @@
 
 •    Shows list of items to be delivered. Detail page shows delivery location of an item in map view and its details.
 
+# SCREENSHOTS
+
+![deliveryItems](https://user-images.githubusercontent.com/37066441/66645972-71a2c480-ec42-11e9-8e47-420e7ef7a991.png)
+
+![deliveryDetails](https://user-images.githubusercontent.com/37066441/66646013-8bdca280-ec42-11e9-9547-536ad218bfc0.png)
 
 # INSTALLATION
 
 •    Open Podfile from project directory.
+
 •    Open terminal and cd to the directory containing the Podfile.
+
 •    Run the "pod install" command. (Incase of error: [!] CocoaPods could not find compatible versions for pod "MaterialComponents/ActivityIndicator".  Please use command: pod install --repo-update)
+
 •    Open xcworkspace 
 
 
 # REQUIREMENT
 
 •    Xcode : 10.2
+
 •    Supported OS version: iOS (10.x,11.x, 12.x)
 
 
@@ -33,7 +42,7 @@
 
 
 •    MVVM
-The Model View ViewModel (MVVM) is an architectural pattern. 
+The Model View ViewModel (MVVM) is an architectural pattern. Also protocols are used to make the code loosely coupled, which makes code testable without subclassing the mock classes.
 
 •    Model: 
 A Model is responsible for exposing data in a way that is easily accessible. It manages and stores data received from server and core data.
@@ -47,63 +56,83 @@ All business logics are handled in view model. View model is responsible to upda
 
 # LIBRARIES USED
 •    Alamofire
-•    GoogleMaps 
+
+•    GoogleMaps
+
 •    MaterialComponents/Activity Indicator
+
 •    Firebase
+
 •    Crashlytics
+
 •    OHHTTPStubs/Swift
+
 •    SDWebImage
 
 
 # GOOGLE MAP SDK
 
 •    We need to create google developer account to integrate Google Maps.
+
 •    Please get API KEY from - https://developers.google.com/maps/documentation/embed/get-api-key
+
 •    Replace GOOGLEAPIKEY with API KEY in Constants.swift
 
 
 # LINTING
 •    Integration of SwiftLint into an Xcode scheme to keep a codebase consistent and maintainable .
+
 •    Install the swiftLint via brew and need to add a new "Run Script Phase" with:
 if which swiftlint >/dev/null; then
 swiftlint
 else
 echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
 fi
+
 •    .swiftlint.yml file is used for basic set of rules . It is placed inside the project folder.
 
 
 # FEATURES
 
 •    CACHING
+
 -    Core Data is used for data caching. 
+
 -    Items fetched from server are displayed to UI and saved using CoreData. 
+
 -    Next time when user launch app, if data is available in db then it fetches data using CoreData and displays on table view.
 
-
 •    REFRESH
+
 -    Pull to refresh is implemented to refresh delivery item list. 
+
 -    In case of pull to refresh, refreshed data from server will be updated on table view and also data saved previously in database will be deleted and refreshed data will be saved for next time loading.
 
 •    PAGINATION
+
 -    When user scroll down to the table, server request is made to fetch more items and it is displayed on table and saved using CoreData. 
 
 •    ITEM DETAILS
+
 -    User can get details of items listed by tapping on the item. It will redirect to new screen. 
+
 -    Detail screen shows the delivery location of item on map view and details of user to whom item is to be delivered. 
 
 
 # UNIT TESTING
 •    Unit testing is done by using XCTest.
+
 •    To run tests click Product->Test or (cmd+U)
 
 
 # ASSUMPTIONS
 •    App is designed for iPhones only.
+
 •    Localization is supported but only English localize string file is maintained.
 
 # IMPROVEMENTS
 •    UI could be done more interactive and user friendly.
+
 •    UI Testing is not implemented.
 
 # LICENSE
