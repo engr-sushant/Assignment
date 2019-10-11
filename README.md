@@ -38,7 +38,7 @@
 
 # DESIGN PATTERN
 
-![Untitled Diagram-2](https://user-images.githubusercontent.com/52284944/61196360-bd011180-a6eb-11e9-8776-31950705e8ee.png)
+![assignmentDiagram](https://user-images.githubusercontent.com/37066441/66646952-3ce43c80-ec45-11e9-94b5-3ae0252aa4da.jpg)
 
 
 •    MVVM
