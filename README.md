@@ -118,6 +118,12 @@ fi
 
 -    Detail screen shows the delivery location of item on map view and details of user to whom item is to be delivered. 
 
+•    Technique
+
+-    Protocol oriented programming. 
+
+-    Improves testability. 
+
 
 # UNIT TESTING
 •    Unit testing is done by using XCTest.
