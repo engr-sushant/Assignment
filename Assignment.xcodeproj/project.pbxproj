@@ -23,6 +23,8 @@
 		5F5DD7ED234EFD9500EB9707 /* DeliveryDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DD7EC234EFD9500EB9707 /* DeliveryDetailViewModelProtocol.swift */; };
 		5F904A1323505C56004835A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F904A1223505C56004835A6 /* Constants.swift */; };
 		5F904A1B23508D47004835A6 /* CommonClassTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F904A1A23508D47004835A6 /* CommonClassTest.swift */; };
+		5F904A1E2350A80B004835A6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F904A1D2350A80B004835A6 /* Reachability.swift */; };
+		5F904A202350A820004835A6 /* ReachabilityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F904A1F2350A820004835A6 /* ReachabilityProtocol.swift */; };
 		5FD3C3AB233F845E007495A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD3C3AA233F845E007495A4 /* AppDelegate.swift */; };
 		5FD3C3B3233F845E007495A4 /* Assignment.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5FD3C3B1233F845E007495A4 /* Assignment.xcdatamodeld */; };
 		5FD3C3B5233F845F007495A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FD3C3B4233F845F007495A4 /* Assets.xcassets */; };
@@ -78,6 +80,8 @@
 		5F5DD7EC234EFD9500EB9707 /* DeliveryDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryDetailViewModelProtocol.swift; sourceTree = "<group>"; };
 		5F904A1223505C56004835A6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5F904A1A23508D47004835A6 /* CommonClassTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonClassTest.swift; sourceTree = "<group>"; };
+		5F904A1D2350A80B004835A6 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		5F904A1F2350A820004835A6 /* ReachabilityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityProtocol.swift; sourceTree = "<group>"; };
 		5FD3C3A7233F845E007495A4 /* Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FD3C3AA233F845E007495A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5FD3C3B2233F845E007495A4 /* Assignment.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Assignment.xcdatamodel; sourceTree = "<group>"; };
@@ -179,6 +183,15 @@
 			path = CommonClassTest;
 			sourceTree = "<group>";
 		};
+		5F904A1C2350A7F4004835A6 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				5F904A1D2350A80B004835A6 /* Reachability.swift */,
+				5F904A1F2350A820004835A6 /* ReachabilityProtocol.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		5FAFC197234DBE7F0089C798 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +289,7 @@
 		5FD3C3E2233F89C4007495A4 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				5F904A1C2350A7F4004835A6 /* Reachability */,
 				5FD3C3E3233F89C9007495A4 /* AppConstants */,
 				5FD3C3E4233F89D2007495A4 /* CommonClass */,
 				5FD3C3E6233F89ED007495A4 /* Extension */,
@@ -655,6 +669,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F904A202350A820004835A6 /* ReachabilityProtocol.swift in Sources */,
 				5FD3C402233F9FF9007495A4 /* DeliveryItem.swift in Sources */,
 				5F5DD7ED234EFD9500EB9707 /* DeliveryDetailViewModelProtocol.swift in Sources */,
 				5F5DD7DC234EEB0700EB9707 /* CoredataManagerProtocol.swift in Sources */,
@@ -671,6 +686,7 @@
 				5FD3C3FA233F951C007495A4 /* APIManager.swift in Sources */,
 				5FD7FAA723431F20006DCA2B /* DeliveryDetailViewController.swift in Sources */,
 				5FD3C3AB233F845E007495A4 /* AppDelegate.swift in Sources */,
+				5F904A1E2350A80B004835A6 /* Reachability.swift in Sources */,
 				5FD3C3EC233F8A93007495A4 /* AppConstants.swift in Sources */,
 				5FD3C3F0233F8FBD007495A4 /* Localizable.strings in Sources */,
 				5F5DD7E7234EFB1C00EB9707 /* DeliveryItemViewModelProtocol.swift in Sources */,

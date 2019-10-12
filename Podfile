@@ -8,7 +8,7 @@ target 'Assignment' do
   # Pods for Assignment
   pod 'Alamofire', '5.0.0-beta.6'
   pod 'SDWebImage', '5.0'
-  pod 'MaterialComponents/ActivityIndicator', '85.4.0'
+  pod 'SVProgressHUD', '2.2.2'
   pod 'GoogleMaps', '3.2.0'
   pod 'Firebase/Core', '6.4.0'
   pod 'Fabric', '1.10.2'
@@ -20,10 +20,4 @@ target 'Assignment' do
     pod 'OHHTTPStubs/Swift', '8.0.0'
 
   end
-
-  target 'AssignmentUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end

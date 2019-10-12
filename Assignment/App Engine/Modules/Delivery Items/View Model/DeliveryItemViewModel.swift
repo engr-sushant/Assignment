@@ -18,22 +18,28 @@ class DeliveryItemViewModel {
     var isRequestInProgress = false
     var offset = 0
     
-    //Dependency Injection to make CoredataManager & ApiManager Testable using Mocking
+    //Dependency Injection to make CoredataManager, ApiManager & Reachability Testable using Mocking
     var apiManager: APIManagerProtocol
     var coreDataManager: CoredataManagerProtocol
-    init(_ apiManager: APIManagerProtocol = APIManager(), coreDataManager: CoredataManagerProtocol = CoreDataManager.shared) {
+    var reachability: ReachabilityProtocol
+    
+    init(_ apiManager: APIManagerProtocol = APIManager(),
+         coreDataManager: CoredataManagerProtocol = CoreDataManager.shared,
+         reachability: ReachabilityProtocol = Reachability()) {
         
         self.apiManager = apiManager
         self.coreDataManager = coreDataManager
+        self.reachability = reachability
     }
 
     // MARK: - Fetch Deliveries from Server
     private func fetchDeliveriesFromServer(isRefreshData refresh: Bool) {
         
-        guard CommonClass.shared.isInternetConnected() else {
+        guard reachability.isInternetConnected() else {
             handleInternetError?()
             return
         }
+
         if self.deliveries.isEmpty && !refresh {
             CommonClass.shared.showLoader()
         }

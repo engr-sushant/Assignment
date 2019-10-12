@@ -14,7 +14,7 @@
 
 •    Open terminal and cd to the directory containing the Podfile.
 
-•    Run the "pod install" command. (Incase of error: [!] CocoaPods could not find compatible versions for pod "MaterialComponents/ActivityIndicator".  Please use command: pod install --repo-update)
+•    Run the "pod install" command. (Incase of error: [!] CocoaPods could not find compatible versions".  Please use command: pod install --repo-update)
 
 •    Open xcworkspace 
 
@@ -38,11 +38,11 @@
 
 # DESIGN PATTERN
 
-![assignmentDiagram](https://user-images.githubusercontent.com/37066441/66646952-3ce43c80-ec45-11e9-94b5-3ae0252aa4da.jpg)
+![mvvmPatternInProject](https://user-images.githubusercontent.com/37066441/66696845-25608e80-eced-11e9-9d1d-02565c2a56e8.jpg)
 
 
 •    MVVM
-The Model View ViewModel (MVVM) is an architectural pattern. Also protocols are used to make the code loosely coupled, which makes code testable without subclassing the mock classes.
+The Model View ViewModel (MVVM) is an architectural pattern. Also protocols are used to make the code loosely coupled, which makes code testable without subclassing the classes for mocking.
 
 •    Model: 
 A Model is responsible for exposing data in a way that is easily accessible. It manages and stores data received from server and core data.
@@ -59,7 +59,7 @@ All business logics are handled in view model. View model is responsible to upda
 
 •    GoogleMaps
 
-•    MaterialComponents/Activity Indicator
+•    SVProgressHUD
 
 •    Firebase
 
@@ -114,7 +114,7 @@ fi
 
 •    ITEM DETAILS
 
--    User can get details of items listed by tapping on the item. It will redirect to new screen. 
+-    User can get details of items listed by tapping on the item. It will navigate to new screen. 
 
 -    Detail screen shows the delivery location of item on map view and details of user to whom item is to be delivered. 
 
@@ -127,6 +127,8 @@ fi
 
 # ASSUMPTIONS
 •    App is designed for iPhones only.
+
+•    App is tested on iPhoneX, iPhone SE, iPhone 6 plus, iPhone 6.
 
 •    Localization is supported but only English localize string file is maintained.
 

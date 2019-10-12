@@ -1,5 +1,5 @@
 import Foundation
-import MaterialComponents.MaterialActivityIndicator
+import SVProgressHUD
 import Alamofire
 
 class CommonClass: NSObject {
@@ -8,17 +8,7 @@ class CommonClass: NSObject {
         return CommonClass()
     }()
     
-    var progressView: MDCActivityIndicator!
     var isProgressViewAdded = false
-
-    // MARK: - Use this method to check internet connection
-    func isInternetConnected() -> Bool {
-        var isInternetConnected = false
-        if let manager = NetworkReachabilityManager() {
-            isInternetConnected = manager.isReachable
-        }
-        return isInternetConnected
-    }
     
     // MARK: - Use this method to show alert
     func showAlertWithTitle(messageBody: String, okBlock: @escaping (() -> Void)) {
@@ -37,14 +27,7 @@ class CommonClass: NSObject {
         }
         isProgressViewAdded = true
         DispatchQueue.main.async {
-            self.progressView = MDCActivityIndicator()
-            self.progressView.radius = ViewRelatedConstants.progressViewRadius
-            self.progressView.strokeWidth = ViewRelatedConstants.progressViewStrokeWidth
-            self.progressView.alpha = ViewRelatedConstants.progressViewStrokeWidth
-            if let backgroundView = sharedAppDelegate.window?.rootViewController?.view {
-                self.progressView.center = backgroundView.center
-            }
-            self.progressView.startAnimating()
+            SVProgressHUD.show()
         }
     }
     
@@ -54,12 +37,8 @@ class CommonClass: NSObject {
             return
         }
         isProgressViewAdded = false
-        if progressView == nil {
-            return
-        }
         DispatchQueue.main.async {
-            self.progressView.stopAnimating()
-            self.progressView.removeFromSuperview()
+            SVProgressHUD.dismiss()
         }
     }
 }

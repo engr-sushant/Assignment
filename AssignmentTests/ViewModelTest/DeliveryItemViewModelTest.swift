@@ -8,22 +8,29 @@ class DeliveryItemViewModelTest: XCTestCase {
     var viewModel: DeliveryItemViewModel?
     var mockapimanager: MockAPIManager!
     var mockcoredatamanager = MockCoreDataManager.mocksharedManager
+    var mockReachability: MockReachability!
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         super.setUp()
         viewModel = DeliveryItemViewModel()
+        
         viewModel?.coreDataManager = mockcoredatamanager
         mockcoredatamanager.shouldReturnErr = false
         mockcoredatamanager.shouldReturnEmptyData = false
+        
         mockapimanager = MockAPIManager()
         viewModel?.apiManager = mockapimanager
+        
+        mockReachability = MockReachability()
+        viewModel?.reachability = mockReachability
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         viewModel = nil
         mockapimanager = nil
+        mockReachability = nil
         super.tearDown()
     }
         
@@ -38,7 +45,25 @@ class DeliveryItemViewModelTest: XCTestCase {
         let itemDetailVM = viewModel?.getDeliveryDetailViewModel(fromIndex: 1)
         XCTAssertNil(itemDetailVM?.item)
     }
-
+    
+    func testLoadDataFromServerWithSuccess() {
+        if let viewModel = viewModel {
+            mockcoredatamanager.shouldReturnEmptyData = true //to make sure we do not get data from database and we hit api to get data
+            viewModel.isRequestInProgress = false
+            viewModel.loadData()
+            XCTAssertTrue(viewModel.deliveries.count == 1)
+        }
+    }
+    
+    func testRefreshWithSuccess() {
+        if let viewModel = viewModel {
+            let item = getDummyItem()
+            viewModel.deliveries = [item, item] //on refresh array count will change
+            mockcoredatamanager.shouldReturnEmptyData = true
+            viewModel.refreshData()
+            XCTAssertTrue(viewModel.deliveries.count == 1)
+        }
+    }
 }
 
 // MARK: - Extension DeliveryItemViewModelTest
@@ -112,8 +137,9 @@ class MockCoreDataManager: CoredataManagerProtocol {
 }
 
 // MARK: - MOCK CONECTIVITY
-class MockReachability: CommonClass {
-    override func isInternetConnected() -> Bool {
+class MockReachability: ReachabilityProtocol {
+    
+    func isInternetConnected() -> Bool {
         return true
     }
 }

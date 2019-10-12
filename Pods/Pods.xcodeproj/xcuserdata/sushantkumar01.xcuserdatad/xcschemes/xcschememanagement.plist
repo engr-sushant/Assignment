@@ -54,26 +54,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>MDFInternationalization.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>MaterialComponents.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>MotionAnimator.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>MotionInterchange.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>OHHTTPStubs.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -89,12 +69,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-AssignmentUITests.xcscheme</key>
+		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SDWebImage.xcscheme</key>
+		<key>SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
