@@ -132,12 +132,10 @@ extension DeliveryItemViewModel: DeliveryItemViewModelProtocol {
     }
     
     // MARK: - Check Bottom Dragging
-    func checkBottomDragging(_ index: Int) {
-        
-        let newIndex = index+1
-        if newIndex % APIQueryConstants.fetchLimit == 0 && deliveries.count <= newIndex {
-            self.handleNextPageLoading?()
-            self.loadData()
+    func checkBottomDragging(tblOffset: CGFloat, maxHght: CGFloat) {
+        if tblOffset >= maxHght && !(deliveries.isEmpty) {
+            handleNextPageLoading?()
+            loadData()
         }
     }
     

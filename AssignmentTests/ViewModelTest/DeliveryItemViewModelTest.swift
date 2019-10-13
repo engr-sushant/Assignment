@@ -82,7 +82,7 @@ class MockAPIManager: APIManagerProtocol {
     var errorInResp = false
     
     // MARK: - API TO GET ITEM LIST FROM SERVER
-    func getDeliveriesFromServer(offset: Int, limit: Int, completionBlock: @escaping APIManager.GetDeliveriesFromServerCompletion) {
+    func getDeliveriesFromServer(offset: Int, limit: Int, completionBlock: @escaping GetDeliveriesFromServerCompletion) {
         if errorInResp {
             let error = NSError(domain: "Error", code: 400, userInfo: nil)
             completionBlock(.failure(error))

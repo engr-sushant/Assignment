@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 protocol DeliveryItemViewModelProtocol {
     
@@ -15,7 +16,7 @@ protocol DeliveryItemViewModelProtocol {
     /*
      Use this method to check bottom dragging.
      **/
-    func checkBottomDragging(_ index: Int)
+    func checkBottomDragging(tblOffset: CGFloat, maxHght: CGFloat)
     
     /*
      Use this method to get DeliveryDetailViewModel.

@@ -1,6 +1,6 @@
 import Foundation
 import SVProgressHUD
-import Alamofire
+import Toast_Swift
 
 class CommonClass: NSObject {
     
@@ -10,16 +10,6 @@ class CommonClass: NSObject {
     
     var isProgressViewAdded = false
     
-    // MARK: - Use this method to show alert
-    func showAlertWithTitle(messageBody: String, okBlock: @escaping (() -> Void)) {
-        let alertVC = UIAlertController(title: LocalizedString.APPNAME, message: messageBody, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: LocalizedString.OK, style: .default) { (_) in
-            okBlock()
-        }
-        alertVC.addAction(okAction)
-        sharedAppDelegate.window?.rootViewController?.present(alertVC, animated: true, completion: nil)
-    }
-        
     // MARK: - Use this method to show loader
     func showLoader() {
         if isProgressViewAdded {
@@ -40,5 +30,13 @@ class CommonClass: NSObject {
         DispatchQueue.main.async {
             SVProgressHUD.dismiss()
         }
+    }
+    
+    // MARK: - Use this method to show toast message
+    func showToastWithTitle(messageBody: String, onViewController vc: UIViewController?) {
+        guard let vc = vc else {
+            return
+        }
+        vc.view.makeToast(messageBody)
     }
 }

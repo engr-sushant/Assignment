@@ -1,9 +1,9 @@
 import Foundation
 import Alamofire
 
-class APIManager {
+typealias GetDeliveriesFromServerCompletion = ((Result<[DeliveryItem], Error>) -> Void)
 
-    internal typealias GetDeliveriesFromServerCompletion = ((Result<[DeliveryItem], Error>) -> Void)
+class APIManager {
     
     // MARK: - BASEURL
     let BASEURL: String = "https://mock-api-mobile.dev.lalamove.com/"

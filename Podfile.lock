@@ -75,6 +75,7 @@ PODS:
     - SDWebImage/Core (= 5.0.0)
   - SDWebImage/Core (5.0.0)
   - SVProgressHUD (2.2.2)
+  - Toast-Swift (5.0.0)
 
 DEPENDENCIES:
   - Alamofire (= 5.0.0-beta.6)
@@ -85,6 +86,7 @@ DEPENDENCIES:
   - OHHTTPStubs/Swift (= 8.0.0)
   - SDWebImage (= 5.0)
   - SVProgressHUD (= 2.2.2)
+  - Toast-Swift (= 5.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -102,6 +104,7 @@ SPEC REPOS:
     - OHHTTPStubs
     - SDWebImage
     - SVProgressHUD
+    - Toast-Swift
 
 SPEC CHECKSUMS:
   Alamofire: cd08a4402bd12cacd0c66f23fb12fec8d6b965e4
@@ -118,7 +121,8 @@ SPEC CHECKSUMS:
   OHHTTPStubs: 9cbce6364bec557cc3439aa6bb7514670d780881
   SDWebImage: 5de80a0302de9e377e62f47d2fa1304efff0e55f
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
+  Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
 
-PODFILE CHECKSUM: 390251ea62dc908d07901f62c0a4f831ec75703f
+PODFILE CHECKSUM: 02f1bee64e2a8acbd3a75e55087aa3e4ddc2e87a
 
 COCOAPODS: 1.7.5

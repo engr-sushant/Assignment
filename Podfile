@@ -13,6 +13,7 @@ target 'Assignment' do
   pod 'Firebase/Core', '6.4.0'
   pod 'Fabric', '1.10.2'
   pod 'Crashlytics', '3.13.3'
+  pod 'Toast-Swift', '5.0.0'
 
   target 'AssignmentTests' do
     inherit! :search_paths

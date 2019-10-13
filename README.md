@@ -69,6 +69,8 @@ All business logics are handled in view model. View model is responsible to upda
 
 •    SDWebImage
 
+•    Toast-Swift
+
 
 # GOOGLE MAP SDK
 

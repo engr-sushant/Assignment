@@ -89,9 +89,8 @@ class DeliveryItemListViewController: UIViewController {
     func handleCompletionWithNoData() {
         viewModel.handleCompletionWithNoData = {[weak self] in
             DispatchQueue.main.async {
-                CommonClass.shared.showAlertWithTitle(messageBody: LocalizedString.NORESULTFOUND, okBlock: {
-                    self?.updateLoader()
-                })
+                CommonClass.shared.showToastWithTitle(messageBody: LocalizedString.NORESULTFOUND, onViewController: self)
+                self?.updateLoader()
             }
         }
     }
@@ -100,9 +99,8 @@ class DeliveryItemListViewController: UIViewController {
     func handleCompletionWithError() {
         viewModel.handleCompletionWithError = {[weak self] error in
             DispatchQueue.main.async {
-                CommonClass.shared.showAlertWithTitle(messageBody: error.localizedDescription, okBlock: {
-                    self?.updateLoader()
-                })
+                CommonClass.shared.showToastWithTitle(messageBody: error.localizedDescription, onViewController: self)
+                self?.updateLoader()
             }
         }
     }
@@ -111,9 +109,8 @@ class DeliveryItemListViewController: UIViewController {
     func handleInternetError() {
         viewModel.handleInternetError = {[weak self] in
             DispatchQueue.main.async {
-                CommonClass.shared.showAlertWithTitle(messageBody: LocalizedString.NOINTERNETCONNECTION, okBlock: {
-                    self?.updateLoader()
-                })
+                CommonClass.shared.showToastWithTitle(messageBody: LocalizedString.NOINTERNETCONNECTION, onViewController: self)
+                self?.updateLoader()
             }
         }
     }
@@ -170,14 +167,15 @@ extension DeliveryItemListViewController: UITableViewDataSource, UITableViewDele
         cell.plotDataOnCell(withCellItem : viewModel.deliveries[indexPath.row])
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        self.viewModel.checkBottomDragging(indexPath.row)
-    }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let viewModel = self.viewModel.getDeliveryDetailViewModel(fromIndex: indexPath.row) {
             self.navigateToDeliveryItemDetail(withItemDetailVM: viewModel)
         }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let maxHght = tableView.contentSize.height - self.tableView.bounds.size.height
+        viewModel.checkBottomDragging(tblOffset: tableView.contentOffset.y, maxHght: maxHght)
     }
 }
