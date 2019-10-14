@@ -1,17 +1,12 @@
 import Foundation
 
-// MARK: - BASEURL
-let BASEURL: String = "https://mock-api-mobile.dev.lalamove.com/"
-
-// MARK: - Get Deliveries Parameters
-let keyOffset: String   = "offset"
-let keyLimit: String    = "limit"
-let fetchLimit          = 20
-
 typealias GetDeliveriesFromServerCompletion = ((Result<[DeliveryItem], Error>) -> Void)
 
 struct APIConstants {
     
+    // MARK: - Base URL
+    static let baseURL: String = "https://mock-api-mobile.dev.lalamove.com/"
+
     public enum APIName : String {
         
         case deliveries
@@ -23,3 +18,12 @@ struct APIConstants {
         }
     }
 }
+
+struct APIQueryConstant {
+    
+    // MARK: - Get Deliveries Parameters
+    static let keyOffset: String   = "offset"
+    static let keyLimit: String    = "limit"
+    static let fetchLimit          = 20
+}
+

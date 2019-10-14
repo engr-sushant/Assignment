@@ -29,8 +29,8 @@ class DeliveryItemCell: UITableViewCell {
     // MARK: - Setup UI Elements
     func setupUI() {
         //Setup Border View
-        borderView.layer.borderWidth = borderWidth
-        borderView.layer.borderColor = borderColor.cgColor
+        borderView.layer.borderWidth = BorderViewConstants.borderWidth
+        borderView.layer.borderColor = BorderViewConstants.borderColor.cgColor
 
         //Setup Item Image View
         cellImageView.clipsToBounds = true
@@ -94,7 +94,7 @@ class DeliveryItemCell: UITableViewCell {
     // MARK: - Plot Data On Cell
     func plotDataOnCell(withCellItem item: DeliveryItem) {
         
-        self.cellImageView.sd_setImage(with: URL(string: item.imageUrl), placeholderImage: appPlaceholderImage)
+        self.cellImageView.sd_setImage(with: URL(string: item.imageUrl), placeholderImage: AppPlaceholderImageConstants.deliveryItem)
         
         guard let desc = item.description else {
             self.descriptionLbl.text = kEmptyString

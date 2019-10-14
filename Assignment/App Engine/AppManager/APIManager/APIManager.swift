@@ -7,7 +7,6 @@ class APIManager {
     private class func apiService<T: Decodable>(url                 : String,
                                                 parameter           : [String: Any],
                                                 completionHandler   : @escaping ((Result<T, Error>) -> Void)) {
-        
         AF.request(url, method: .get, parameters: parameter).responseDecodable(decoder: JSONDecoder()) { (response: DataResponse<T>)  in
             completionHandler(response.result)
         }
@@ -21,9 +20,8 @@ extension APIManager: APIManagerProtocol {
     func getDeliveriesFromServer(offset             : Int,
                                  limit              : Int,
                                  completionBlock    : @escaping GetDeliveriesFromServerCompletion) {
-        
-        let url = BASEURL + APIConstants.APIName.deliveries.description
-        let parameters: [String: Any] = [keyOffset: offset, keyLimit: limit]
+        let url = APIConstants.baseURL + APIConstants.APIName.deliveries.description
+        let parameters: [String: Any] = [APIQueryConstant.keyOffset: offset, APIQueryConstant.keyLimit: limit]
         APIManager.apiService(url: url, parameter: parameters, completionHandler: completionBlock)
     }
 }

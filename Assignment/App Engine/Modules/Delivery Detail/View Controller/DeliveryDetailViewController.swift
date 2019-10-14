@@ -58,8 +58,8 @@ class DeliveryDetailViewController: UIViewController {
         itemDescriptionLbl.textAlignment = NSTextAlignment.left
         
         //Setup Border View
-        borderView.layer.borderColor = borderColor.cgColor
-        borderView.layer.borderWidth = borderWidth
+        borderView.layer.borderColor = BorderViewConstants.borderColor.cgColor
+        borderView.layer.borderWidth = BorderViewConstants.borderWidth
     }
     
     // MARK: - Add Constraints to UI Elements
@@ -125,7 +125,7 @@ class DeliveryDetailViewController: UIViewController {
     
     // MARK: - Plot Data
     func plotData() {
-        self.itemImageView.sd_setImage(with: URL(string: itemDetailVM.item.imageUrl), placeholderImage: appPlaceholderImage)
+        self.itemImageView.sd_setImage(with: URL(string: itemDetailVM.item.imageUrl), placeholderImage: AppPlaceholderImageConstants.deliveryItem)
 
         guard let desc = itemDetailVM.item.description else {
             self.itemDescriptionLbl.text = kEmptyString

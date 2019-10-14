@@ -38,7 +38,7 @@
 
 # DESIGN PATTERN
 
-![mvvmPatternInProject](https://user-images.githubusercontent.com/37066441/66696845-25608e80-eced-11e9-9d1d-02565c2a56e8.jpg)
+![mvvmImage](https://user-images.githubusercontent.com/37066441/66733834-79e74380-ee7e-11e9-88cb-1e5922e71d09.jpg)
 
 
 •    MVVM

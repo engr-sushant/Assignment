@@ -15,7 +15,7 @@ class APIManagerTest: XCTestCase {
     func testGetDeliveriesFromServer() {
         StubObject.request(withPathRegex: "mock-api-mobile.dev.lalamove.com", withResponseFile: "ItemsList.json")
         let expectedResult = expectation(description: "got result")
-        APIManager().getDeliveriesFromServer(offset: 0, limit: fetchLimit) { (result) in
+        APIManager().getDeliveriesFromServer(offset: 0, limit: APIQueryConstant.fetchLimit) { (result) in
             switch result {
             case .success(let items):
                 XCTAssertEqual(2, items.count)
@@ -34,7 +34,7 @@ class APIManagerTest: XCTestCase {
     func testGetDeliveriesFromServerWithErr() {
         StubObject.request(withPathRegex: "mock-api-mobile.dev.lalamove.com", withResponseFile: "InvalidResponse.json")
         let expectedResult = expectation(description: "got invalid")
-        APIManager().getDeliveriesFromServer(offset: 0, limit: fetchLimit) { (result) in
+        APIManager().getDeliveriesFromServer(offset: 0, limit: APIQueryConstant.fetchLimit) { (result) in
             switch result {
             case .success( let item):
                 XCTAssertNil(item, "error: item should be nil")

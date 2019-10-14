@@ -72,7 +72,7 @@ extension CoreDataManager: CoredataManagerProtocol {
         let managedContext = self.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: CoredataConstants.entityNameItem)
         fetchRequest.fetchOffset = offset
-        fetchRequest.fetchLimit = fetchLimit
+        fetchRequest.fetchLimit = APIQueryConstant.fetchLimit
         do {
             let result = try managedContext.fetch(fetchRequest)
             guard result as? [EntityItem] != nil else {
