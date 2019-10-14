@@ -26,7 +26,6 @@ class DeliveryItemViewModel {
     init(_ apiManager: APIManagerProtocol = APIManager(),
          coreDataManager: CoredataManagerProtocol = CoreDataManager.shared,
          reachability: ReachabilityProtocol = Reachability()) {
-        
         self.apiManager = apiManager
         self.coreDataManager = coreDataManager
         self.reachability = reachability
@@ -34,23 +33,17 @@ class DeliveryItemViewModel {
 
     // MARK: - Fetch Deliveries from Server
     private func fetchDeliveriesFromServer(isRefreshData refresh: Bool) {
-        
         guard reachability.isInternetConnected() else {
             handleInternetError?()
             return
         }
-
         if self.deliveries.isEmpty && !refresh {
             CommonClass.shared.showLoader()
         }
-        
         isRequestInProgress = true
-        
         offset = refresh ? 0 : deliveries.count
         apiManager.getDeliveriesFromServer(offset: offset, limit: APIQueryConstants.fetchLimit) {[weak self] (result: Result<[DeliveryItem], Error>) in
-            
             self?.isRequestInProgress = false
-            
             switch result {
             case .success(let items):
                 guard !items.isEmpty else {
@@ -68,14 +61,12 @@ class DeliveryItemViewModel {
     
     // MARK: - Fetch Deliveries From Local DB
     private func fetchDeliveriesFromLocalDB() {
-        
         offset = deliveries.count
         self.coreDataManager.fetchDeliveryItemFromLocalDB(offset: offset) {[weak self] (items, err) in
             guard err == nil else {
                 self?.handleCompletionWithError?(err!)
                 return
             }
-            
             items.isEmpty ?
                 self?.fetchDeliveriesFromServer(isRefreshData: false) :
                 self?.onSuccessLoadMoreItems(withItems: items, fromDB: true)
@@ -84,10 +75,8 @@ class DeliveryItemViewModel {
     
     // MARK: - Handle Refresh Success
     private func onSuccessRefreshItems(withItems items: [DeliveryItem]) {
-        
         deliveries = items
         self.handleCompletionWithSuccess?()
-        
         self.coreDataManager.deleteDeliveryItemFromLocalDB {[weak self] (error) in
             guard error == nil else {
                 self?.handleCompletionWithError?(error!)
@@ -99,10 +88,8 @@ class DeliveryItemViewModel {
     
     // MARK: - Handle Load More Item Success
     private func onSuccessLoadMoreItems(withItems items: [DeliveryItem], fromDB isFromDB: Bool) {
-        
         deliveries.append(contentsOf: items)
         self.handleCompletionWithSuccess?()
-        
         guard !isFromDB else {
             return
         }
@@ -115,7 +102,6 @@ extension DeliveryItemViewModel: DeliveryItemViewModelProtocol {
     
     // MARK: - Load Data
     func loadData() {
-        
         guard !isRequestInProgress else {
             return
         }
@@ -124,7 +110,6 @@ extension DeliveryItemViewModel: DeliveryItemViewModelProtocol {
     
     // MARK: - Refresh Data
     func refreshData() {
-        
         guard !isRequestInProgress else {
             return
         }
@@ -141,7 +126,6 @@ extension DeliveryItemViewModel: DeliveryItemViewModelProtocol {
     
     // MARK: - Get Delivery Detail View Model
     func getDeliveryDetailViewModel(fromIndex index: Int) -> DeliveryDetailViewModel? {
-        
         return (deliveries.count > index) ?
             DeliveryDetailViewModel.init(withItem: deliveries[index]) :
             nil
