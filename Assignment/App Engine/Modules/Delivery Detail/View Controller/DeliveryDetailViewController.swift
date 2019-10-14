@@ -58,8 +58,8 @@ class DeliveryDetailViewController: UIViewController {
         itemDescriptionLbl.textAlignment = NSTextAlignment.left
         
         //Setup Border View
-        borderView.layer.borderColor = ViewRelatedConstants.borderColor.cgColor
-        borderView.layer.borderWidth = ViewRelatedConstants.borderWidth
+        borderView.layer.borderColor = borderColor.cgColor
+        borderView.layer.borderWidth = borderWidth
     }
     
     // MARK: - Add Constraints to UI Elements
@@ -68,64 +68,64 @@ class DeliveryDetailViewController: UIViewController {
         self.view.addSubview(borderView)
 
         //Adding constraint to Map View
-        let cornerAnchorForMapView = ConrnerAnchor(top      : (self.topLayoutGuide.bottomAnchor, ViewRelatedConstants.zeroPaddingConstant),
-                                                   bottom   : (borderView.topAnchor, ViewRelatedConstants.paddingConstant),
-                                                   left     : (self.view.leftAnchor, ViewRelatedConstants.zeroPaddingConstant),
-                                                   right    : (self.view.rightAnchor, ViewRelatedConstants.zeroPaddingConstant)
+        let cornerAnchorForMapView = ConrnerAnchor(top      : (self.topLayoutGuide.bottomAnchor, ViewConstraintConstants.zeroPaddingConstant),
+                                                   bottom   : (borderView.topAnchor, ViewConstraintConstants.paddingConstant),
+                                                   left     : (self.view.leftAnchor, ViewConstraintConstants.zeroPaddingConstant),
+                                                   right    : (self.view.rightAnchor, ViewConstraintConstants.zeroPaddingConstant)
         )
         mapView.addConstraints(cornerConstraints: cornerAnchorForMapView,
                                centerY  : nil,
                                centerX  : nil,
-                               height   : ViewRelatedConstants.zeroPaddingConstant,
-                               width    : ViewRelatedConstants.zeroPaddingConstant
+                               height   : ViewConstraintConstants.zeroPaddingConstant,
+                               width    : ViewConstraintConstants.zeroPaddingConstant
         )
         
         //Adding constraint to Border View
-        let cornerAnchorForBorderView = ConrnerAnchor(top       : (self.mapView.bottomAnchor, ViewRelatedConstants.paddingConstant),
-                                                      bottom    : (self.bottomLayoutGuide.topAnchor, ViewRelatedConstants.paddingConstant),
-                                                      left      : (self.view.leftAnchor, ViewRelatedConstants.paddingConstant),
-                                                      right     : (self.view.rightAnchor, ViewRelatedConstants.paddingConstant)
+        let cornerAnchorForBorderView = ConrnerAnchor(top       : (self.mapView.bottomAnchor, ViewConstraintConstants.paddingConstant),
+                                                      bottom    : (self.bottomLayoutGuide.topAnchor, ViewConstraintConstants.paddingConstant),
+                                                      left      : (self.view.leftAnchor, ViewConstraintConstants.paddingConstant),
+                                                      right     : (self.view.rightAnchor, ViewConstraintConstants.paddingConstant)
         )
         borderView.addConstraints(cornerConstraints: cornerAnchorForBorderView,
                                   centerY   : nil,
                                   centerX   : nil,
-                                  height    : ViewRelatedConstants.zeroPaddingConstant,
-                                  width     : ViewRelatedConstants.zeroPaddingConstant
+                                  height    : ViewConstraintConstants.zeroPaddingConstant,
+                                  width     : ViewConstraintConstants.zeroPaddingConstant
         )
 
         borderView.addSubview(itemImageView)
         borderView.addSubview(itemDescriptionLbl)
         
         //Adding constraint to Item Image View
-        let cornerConstraintForItemImgView = ConrnerAnchor(top: (nil, ViewRelatedConstants.zeroPaddingConstant),
-                                                           bottom: (nil, ViewRelatedConstants.zeroPaddingConstant),
-                                                           left: (borderView.leftAnchor, ViewRelatedConstants.paddingConstant),
-                                                           right: (nil, ViewRelatedConstants.zeroPaddingConstant))
+        let cornerConstraintForItemImgView = ConrnerAnchor(top: (nil, ViewConstraintConstants.zeroPaddingConstant),
+                                                           bottom: (nil, ViewConstraintConstants.zeroPaddingConstant),
+                                                           left: (borderView.leftAnchor, ViewConstraintConstants.paddingConstant),
+                                                           right: (nil, ViewConstraintConstants.zeroPaddingConstant))
         itemImageView.addConstraints(cornerConstraints: cornerConstraintForItemImgView,
                                      centerY    : itemDescriptionLbl.centerYAnchor,
                                      centerX    : nil,
-                                     height     : ViewRelatedConstants.imageHeight,
-                                     width      : ViewRelatedConstants.imageHeight
+                                     height     : ViewConstraintConstants.imageHeight,
+                                     width      : ViewConstraintConstants.imageHeight
         )
         
         //Adding constraint to Item Description Label
-        let cornerConstraintForDescriptionLbl = ConrnerAnchor(top: (borderView.topAnchor, ViewRelatedConstants.paddingConstant),
-                                                              bottom: (borderView.bottomAnchor, ViewRelatedConstants.paddingConstant),
-                                                              left: (itemImageView.rightAnchor, ViewRelatedConstants.paddingConstant),
-                                                              right: (borderView.rightAnchor, ViewRelatedConstants.paddingConstant)
+        let cornerConstraintForDescriptionLbl = ConrnerAnchor(top: (borderView.topAnchor, ViewConstraintConstants.paddingConstant),
+                                                              bottom: (borderView.bottomAnchor, ViewConstraintConstants.paddingConstant),
+                                                              left: (itemImageView.rightAnchor, ViewConstraintConstants.paddingConstant),
+                                                              right: (borderView.rightAnchor, ViewConstraintConstants.paddingConstant)
         )
         itemDescriptionLbl.addConstraints(cornerConstraints: cornerConstraintForDescriptionLbl,
                                           centerY   : nil,
                                           centerX   : nil,
-                                          height    : ViewRelatedConstants.zeroPaddingConstant,
-                                          width     : ViewRelatedConstants.zeroPaddingConstant
+                                          height    : ViewConstraintConstants.zeroPaddingConstant,
+                                          width     : ViewConstraintConstants.zeroPaddingConstant
         )
-        itemDescriptionLbl.heightAnchor.constraint(greaterThanOrEqualToConstant: ViewRelatedConstants.imageHeight).isActive = true
+        itemDescriptionLbl.heightAnchor.constraint(greaterThanOrEqualToConstant: ViewConstraintConstants.imageHeight).isActive = true
     }
     
     // MARK: - Plot Data
     func plotData() {
-        self.itemImageView.sd_setImage(with: URL(string: itemDetailVM.item.imageUrl), placeholderImage: ViewRelatedConstants.appPlaceholderImage)
+        self.itemImageView.sd_setImage(with: URL(string: itemDetailVM.item.imageUrl), placeholderImage: appPlaceholderImage)
 
         guard let desc = itemDetailVM.item.description else {
             self.itemDescriptionLbl.text = kEmptyString

@@ -17,6 +17,12 @@ class CommonClassTest: XCTestCase {
         super.tearDown()
     }
 
+    func testShowLoader() {
+        commonClass.isProgressViewAdded = false
+        commonClass.showLoader()
+        XCTAssertTrue(commonClass.isProgressViewAdded == true)
+    }
+    
     func testHideLoader() {
         commonClass.isProgressViewAdded = true
         commonClass.hideLoader()

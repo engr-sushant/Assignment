@@ -52,16 +52,16 @@ class DeliveryItemListViewController: UIViewController {
         self.view.addSubview(tableView)
         
         //Adding constraint to Map View
-        let cornerAnchorForTableView = ConrnerAnchor(top    : (self.topLayoutGuide.bottomAnchor, ViewRelatedConstants.zeroPaddingConstant),
-                                                   bottom   : (self.bottomLayoutGuide.topAnchor, ViewRelatedConstants.zeroPaddingConstant),
-                                                   left     : (self.view.leftAnchor, ViewRelatedConstants.zeroPaddingConstant),
-                                                   right    : (self.view.rightAnchor, ViewRelatedConstants.zeroPaddingConstant)
+        let cornerAnchorForTableView = ConrnerAnchor(top    : (self.topLayoutGuide.bottomAnchor, ViewConstraintConstants.zeroPaddingConstant),
+                                                   bottom   : (self.bottomLayoutGuide.topAnchor, ViewConstraintConstants.zeroPaddingConstant),
+                                                   left     : (self.view.leftAnchor, ViewConstraintConstants.zeroPaddingConstant),
+                                                   right    : (self.view.rightAnchor, ViewConstraintConstants.zeroPaddingConstant)
         )
         tableView.addConstraints(cornerConstraints: cornerAnchorForTableView,
                                centerY  : nil,
                                centerX  : nil,
-                               height   : ViewRelatedConstants.zeroPaddingConstant,
-                               width    : ViewRelatedConstants.zeroPaddingConstant
+                               height   : ViewConstraintConstants.zeroPaddingConstant,
+                               width    : ViewConstraintConstants.zeroPaddingConstant
         )
     }
     

@@ -17,6 +17,7 @@
 		5F21F84A2345E48F00206837 /* APIManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F21F8492345E48F00206837 /* APIManagerTest.swift */; };
 		5F21F84D2345E6C200206837 /* InvalidResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F21F84C2345E6C200206837 /* InvalidResponse.json */; };
 		5F21F84F2345E6E100206837 /* ItemsList.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F21F84E2345E6E100206837 /* ItemsList.json */; };
+		5F535C6423543CE3003D3890 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F535C6323543CE3003D3890 /* APIConstants.swift */; };
 		5F5DD7DC234EEB0700EB9707 /* CoredataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DD7DB234EEB0700EB9707 /* CoredataManagerProtocol.swift */; };
 		5F5DD7E0234EF06C00EB9707 /* APIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DD7DF234EF06C00EB9707 /* APIManagerProtocol.swift */; };
 		5F5DD7E7234EFB1C00EB9707 /* DeliveryItemViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DD7E6234EFB1C00EB9707 /* DeliveryItemViewModelProtocol.swift */; };
@@ -74,6 +75,7 @@
 		5F21F8492345E48F00206837 /* APIManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerTest.swift; sourceTree = "<group>"; };
 		5F21F84C2345E6C200206837 /* InvalidResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = InvalidResponse.json; sourceTree = "<group>"; };
 		5F21F84E2345E6E100206837 /* ItemsList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ItemsList.json; sourceTree = "<group>"; };
+		5F535C6323543CE3003D3890 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		5F5DD7DB234EEB0700EB9707 /* CoredataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoredataManagerProtocol.swift; sourceTree = "<group>"; };
 		5F5DD7DF234EF06C00EB9707 /* APIManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerProtocol.swift; sourceTree = "<group>"; };
 		5F5DD7E6234EFB1C00EB9707 /* DeliveryItemViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryItemViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 		5FD3C3F7233F94EC007495A4 /* APIManager */ = {
 			isa = PBXGroup;
 			children = (
+				5F535C6323543CE3003D3890 /* APIConstants.swift */,
 				5FD3C3F9233F951C007495A4 /* APIManager.swift */,
 				5F5DD7DF234EF06C00EB9707 /* APIManagerProtocol.swift */,
 			);
@@ -689,6 +692,7 @@
 				5F904A1E2350A80B004835A6 /* Reachability.swift in Sources */,
 				5FD3C3EC233F8A93007495A4 /* AppConstants.swift in Sources */,
 				5FD3C3F0233F8FBD007495A4 /* Localizable.strings in Sources */,
+				5F535C6423543CE3003D3890 /* APIConstants.swift in Sources */,
 				5F5DD7E7234EFB1C00EB9707 /* DeliveryItemViewModelProtocol.swift in Sources */,
 				5FD3C3F4233F9147007495A4 /* LocalizedString.swift in Sources */,
 				5FD3C3EE233F8BB0007495A4 /* CommonClass.swift in Sources */,

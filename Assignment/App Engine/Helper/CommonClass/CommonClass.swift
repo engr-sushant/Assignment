@@ -7,13 +7,12 @@ class CommonClass: NSObject {
     static let shared: CommonClass = {
         return CommonClass()
     }()
-    
     var isProgressViewAdded = false
     
     // MARK: - Use this method to show loader
     func showLoader() {
-        if isProgressViewAdded {
-           return
+        guard !isProgressViewAdded else {
+            return
         }
         isProgressViewAdded = true
         DispatchQueue.main.async {
@@ -23,7 +22,7 @@ class CommonClass: NSObject {
     
     // MARK: - Use this method to hide loader
     func hideLoader() {
-        if !isProgressViewAdded {
+        guard isProgressViewAdded else {
             return
         }
         isProgressViewAdded = false

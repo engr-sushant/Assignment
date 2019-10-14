@@ -29,8 +29,8 @@ class DeliveryItemCell: UITableViewCell {
     // MARK: - Setup UI Elements
     func setupUI() {
         //Setup Border View
-        borderView.layer.borderWidth = ViewRelatedConstants.borderWidth
-        borderView.layer.borderColor = ViewRelatedConstants.borderColor.cgColor
+        borderView.layer.borderWidth = borderWidth
+        borderView.layer.borderColor = borderColor.cgColor
 
         //Setup Item Image View
         cellImageView.clipsToBounds = true
@@ -48,53 +48,53 @@ class DeliveryItemCell: UITableViewCell {
         addSubview(borderView)
         
         //Adding constraint to Border View
-        let constraintForBorderView = ConrnerAnchor(top     : (topAnchor, ViewRelatedConstants.paddingConstant),
-                                                    bottom  : (bottomAnchor, ViewRelatedConstants.paddingConstant),
-                                                    left    : (leftAnchor, ViewRelatedConstants.paddingConstant),
-                                                    right   : (rightAnchor, ViewRelatedConstants.paddingConstant)
+        let constraintForBorderView = ConrnerAnchor(top     : (topAnchor, ViewConstraintConstants.paddingConstant),
+                                                    bottom  : (bottomAnchor, ViewConstraintConstants.paddingConstant),
+                                                    left    : (leftAnchor, ViewConstraintConstants.paddingConstant),
+                                                    right   : (rightAnchor, ViewConstraintConstants.paddingConstant)
         )
         borderView.addConstraints(cornerConstraints: constraintForBorderView,
                                   centerY   : nil,
                                   centerX   : nil,
-                                  height    : ViewRelatedConstants.zeroPaddingConstant,
-                                  width     : ViewRelatedConstants.zeroPaddingConstant
+                                  height    : ViewConstraintConstants.zeroPaddingConstant,
+                                  width     : ViewConstraintConstants.zeroPaddingConstant
         )
         
         borderView.addSubview(cellImageView)
         borderView.addSubview(descriptionLbl)
         
         //Adding constraint to Item Description Label
-        let constraintForDescriptionLbl = ConrnerAnchor(top     : (borderView.topAnchor, ViewRelatedConstants.paddingConstant),
-                                                        bottom  : (borderView.bottomAnchor, ViewRelatedConstants.paddingConstant),
-                                                        left    : (cellImageView.rightAnchor, ViewRelatedConstants.paddingConstant),
-                                                        right   : (borderView.rightAnchor, ViewRelatedConstants.paddingConstant)
+        let constraintForDescriptionLbl = ConrnerAnchor(top     : (borderView.topAnchor, ViewConstraintConstants.paddingConstant),
+                                                        bottom  : (borderView.bottomAnchor, ViewConstraintConstants.paddingConstant),
+                                                        left    : (cellImageView.rightAnchor, ViewConstraintConstants.paddingConstant),
+                                                        right   : (borderView.rightAnchor, ViewConstraintConstants.paddingConstant)
         )
         descriptionLbl.addConstraints(cornerConstraints: constraintForDescriptionLbl,
                                       centerY   : nil,
                                       centerX   : nil,
-                                      height    : ViewRelatedConstants.zeroPaddingConstant,
-                                      width     : ViewRelatedConstants.zeroPaddingConstant
+                                      height    : ViewConstraintConstants.zeroPaddingConstant,
+                                      width     : ViewConstraintConstants.zeroPaddingConstant
         )
-        descriptionLbl.heightAnchor.constraint(greaterThanOrEqualToConstant: ViewRelatedConstants.imageHeight).isActive = true
+        descriptionLbl.heightAnchor.constraint(greaterThanOrEqualToConstant: ViewConstraintConstants.imageHeight).isActive = true
         
         //Adding constraint to Item Image View
-        let constraintForCellImageView = ConrnerAnchor(top      : (nil, ViewRelatedConstants.zeroPaddingConstant),
-                                                       bottom   : (nil, ViewRelatedConstants.zeroPaddingConstant),
-                                                       left     : (borderView.leftAnchor, ViewRelatedConstants.paddingConstant),
-                                                       right    : (nil, ViewRelatedConstants.zeroPaddingConstant)
+        let constraintForCellImageView = ConrnerAnchor(top      : (nil, ViewConstraintConstants.zeroPaddingConstant),
+                                                       bottom   : (nil, ViewConstraintConstants.zeroPaddingConstant),
+                                                       left     : (borderView.leftAnchor, ViewConstraintConstants.paddingConstant),
+                                                       right    : (nil, ViewConstraintConstants.zeroPaddingConstant)
         )
         cellImageView.addConstraints(cornerConstraints: constraintForCellImageView,
                                      centerY    : descriptionLbl.centerYAnchor,
                                      centerX    : nil,
-                                     height     : ViewRelatedConstants.imageHeight,
-                                     width      : ViewRelatedConstants.imageHeight
+                                     height     : ViewConstraintConstants.imageHeight,
+                                     width      : ViewConstraintConstants.imageHeight
         )
     }
     
     // MARK: - Plot Data On Cell
     func plotDataOnCell(withCellItem item: DeliveryItem) {
         
-        self.cellImageView.sd_setImage(with: URL(string: item.imageUrl), placeholderImage: ViewRelatedConstants.appPlaceholderImage)
+        self.cellImageView.sd_setImage(with: URL(string: item.imageUrl), placeholderImage: appPlaceholderImage)
         
         guard let desc = item.description else {
             self.descriptionLbl.text = kEmptyString

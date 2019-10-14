@@ -42,7 +42,7 @@ class DeliveryItemViewModel {
         }
         isRequestInProgress = true
         offset = refresh ? 0 : deliveries.count
-        apiManager.getDeliveriesFromServer(offset: offset, limit: APIQueryConstants.fetchLimit) {[weak self] (result: Result<[DeliveryItem], Error>) in
+        apiManager.getDeliveriesFromServer(offset: offset, limit: fetchLimit) {[weak self] (result: Result<[DeliveryItem], Error>) in
             self?.isRequestInProgress = false
             switch result {
             case .success(let items):
