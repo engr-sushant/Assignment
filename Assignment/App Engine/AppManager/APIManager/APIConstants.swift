@@ -7,7 +7,7 @@ struct APIConstants {
     // MARK: - Base URL
     static let baseURL: String = "https://mock-api-mobile.dev.lalamove.com/"
 
-    public enum APIName : String {
+    public enum APIName: String {
         
         case deliveries
         
@@ -26,4 +26,3 @@ struct APIQueryConstant {
     static let keyLimit: String    = "limit"
     static let fetchLimit          = 20
 }
-

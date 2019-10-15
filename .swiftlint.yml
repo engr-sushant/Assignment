@@ -1,0 +1,50 @@
+disabled_rules:
+- trailing_whitespace
+- unused_closure_parameter
+- unused_optional_binding
+- redundant_string_enum_value
+- line_length
+- identifier_name
+- force_cast
+
+
+opt_in_rules:
+- empty_count
+- empty_string
+
+excluded:
+- Carthage
+- Pods
+- SwiftLint/Common/3rdPartyLib
+
+function_body_length:
+warning: 200
+error: 300
+
+function_parameter_count:
+warning: 12
+error: 12
+
+type_body_length:
+warning: 200
+error: 300
+
+file_length:
+warning: 400
+error: 500
+ignore_comment_only_lines: true
+
+cyclomatic_complexity:
+warning: 15
+error: 25
+
+variable_name:
+max_length:
+warning: 45
+error: 60
+min_length:
+warning: 1
+
+reporter: "xcode"
+
+

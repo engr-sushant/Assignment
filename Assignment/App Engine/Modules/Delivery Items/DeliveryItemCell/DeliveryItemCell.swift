@@ -71,46 +71,46 @@ class DeliveryItemCell: UITableViewCell {
         addSubview(borderView)
         
         //Adding constraint to Border View
-        let constraintForBorderView = ConrnerAnchor(top     : (topAnchor, ViewConstraintConstants.paddingConstant),
-                                                    bottom  : (bottomAnchor, ViewConstraintConstants.paddingConstant),
-                                                    left    : (leftAnchor, ViewConstraintConstants.paddingConstant),
-                                                    right   : (rightAnchor, ViewConstraintConstants.paddingConstant)
+        let constraintForBorderView = ConrnerAnchor(top: (topAnchor, ViewConstraintConstants.paddingConstant),
+                                                    bottom: (bottomAnchor, ViewConstraintConstants.paddingConstant),
+                                                    left: (leftAnchor, ViewConstraintConstants.paddingConstant),
+                                                    right: (rightAnchor, ViewConstraintConstants.paddingConstant)
         )
         borderView.addConstraints(cornerConstraints: constraintForBorderView,
-                                  centerY   : nil,
-                                  centerX   : nil,
-                                  height    : ViewConstraintConstants.zeroPaddingConstant,
-                                  width     : ViewConstraintConstants.zeroPaddingConstant
+                                  centerY: nil,
+                                  centerX: nil,
+                                  height: ViewConstraintConstants.zeroPaddingConstant,
+                                  width: ViewConstraintConstants.zeroPaddingConstant
         )
         
         borderView.addSubview(cellImageView)
         borderView.addSubview(descriptionLbl)
         
         //Adding constraint to Item Description Label
-        let constraintForDescriptionLbl = ConrnerAnchor(top     : (borderView.topAnchor, ViewConstraintConstants.paddingConstant),
-                                                        bottom  : (borderView.bottomAnchor, ViewConstraintConstants.paddingConstant),
-                                                        left    : (cellImageView.rightAnchor, ViewConstraintConstants.paddingConstant),
-                                                        right   : (borderView.rightAnchor, ViewConstraintConstants.paddingConstant)
+        let constraintForDescriptionLbl = ConrnerAnchor(top: (borderView.topAnchor, ViewConstraintConstants.paddingConstant),
+                                                        bottom: (borderView.bottomAnchor, ViewConstraintConstants.paddingConstant),
+                                                        left: (cellImageView.rightAnchor, ViewConstraintConstants.paddingConstant),
+                                                        right: (borderView.rightAnchor, ViewConstraintConstants.paddingConstant)
         )
         descriptionLbl.addConstraints(cornerConstraints: constraintForDescriptionLbl,
-                                      centerY   : nil,
-                                      centerX   : nil,
-                                      height    : ViewConstraintConstants.zeroPaddingConstant,
-                                      width     : ViewConstraintConstants.zeroPaddingConstant
+                                      centerY: nil,
+                                      centerX: nil,
+                                      height: ViewConstraintConstants.zeroPaddingConstant,
+                                      width: ViewConstraintConstants.zeroPaddingConstant
         )
         descriptionLbl.heightAnchor.constraint(greaterThanOrEqualToConstant: ViewConstraintConstants.imageHeight).isActive = true
         
         //Adding constraint to Item Image View
-        let constraintForCellImageView = ConrnerAnchor(top      : (nil, ViewConstraintConstants.zeroPaddingConstant),
-                                                       bottom   : (nil, ViewConstraintConstants.zeroPaddingConstant),
-                                                       left     : (borderView.leftAnchor, ViewConstraintConstants.paddingConstant),
-                                                       right    : (nil, ViewConstraintConstants.zeroPaddingConstant)
+        let constraintForCellImageView = ConrnerAnchor(top: (nil, ViewConstraintConstants.zeroPaddingConstant),
+                                                       bottom: (nil, ViewConstraintConstants.zeroPaddingConstant),
+                                                       left: (borderView.leftAnchor, ViewConstraintConstants.paddingConstant),
+                                                       right: (nil, ViewConstraintConstants.zeroPaddingConstant)
         )
         cellImageView.addConstraints(cornerConstraints: constraintForCellImageView,
-                                     centerY    : descriptionLbl.centerYAnchor,
-                                     centerX    : nil,
-                                     height     : ViewConstraintConstants.imageHeight,
-                                     width      : ViewConstraintConstants.imageHeight
+                                     centerY: descriptionLbl.centerYAnchor,
+                                     centerX: nil,
+                                     height: ViewConstraintConstants.imageHeight,
+                                     width: ViewConstraintConstants.imageHeight
         )
     }
 }

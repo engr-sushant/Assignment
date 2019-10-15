@@ -4,14 +4,14 @@ import CoreData
 
 class DeliveryItemViewModel {
     
-    internal typealias completion           = (_ loaderType: ProgressLoaderType) -> Void
-    internal typealias completionWithError  = (_ loaderType: ProgressLoaderType, _ error: Error) -> Void
+    internal typealias Completion           = (_ loaderType: ProgressLoaderType) -> Void
+    internal typealias CompletionWithError  = (_ loaderType: ProgressLoaderType, _ error: Error) -> Void
 
-    var handleCompletionWithSuccess : completion?
-    var handleCompletionWithNoData  : completion?
-    var handleCompletionWithError   : completionWithError?
-    var handleNextPageLoading       : completion?
-    var handleInternetError         : completion?
+    var handleCompletionWithSuccess: Completion?
+    var handleCompletionWithNoData: Completion?
+    var handleCompletionWithError: CompletionWithError?
+    var handleNextPageLoading: Completion?
+    var handleInternetError: Completion?
 
     // MARK: - Variables
     var deliveries = [DeliveryItem]()

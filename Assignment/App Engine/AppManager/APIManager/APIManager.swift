@@ -4,9 +4,9 @@ import Alamofire
 class APIManager {
     
     // MARK: - Use this method to make api calls
-    private class func apiService<T: Decodable>(url                 : String,
-                                                parameter           : [String: Any],
-                                                completionHandler   : @escaping ((Result<T, Error>) -> Void)) {
+    private class func apiService<T: Decodable>(url: String,
+                                                parameter: [String: Any],
+                                                completionHandler: @escaping ((Result<T, Error>) -> Void)) {
         AF.request(url, method: .get, parameters: parameter).responseDecodable(decoder: JSONDecoder()) { (response: DataResponse<T>)  in
             completionHandler(response.result)
         }
@@ -16,10 +16,10 @@ class APIManager {
 // MARK: - Extension APIManagerProtocol
 extension APIManager: APIManagerProtocol {
     
-    //MARK: - Get Deliveries From Server
-    func getDeliveriesFromServer(offset             : Int,
-                                 limit              : Int,
-                                 completionBlock    : @escaping GetDeliveriesFromServerCompletion) {
+    // MARK: - Get Deliveries From Server
+    func getDeliveriesFromServer(offset: Int,
+                                 limit: Int,
+                                 completionBlock: @escaping GetDeliveriesFromServerCompletion) {
         let url = APIConstants.baseURL + APIConstants.APIName.deliveries.description
         let parameters: [String: Any] = [APIQueryConstant.keyOffset: offset, APIQueryConstant.keyLimit: limit]
         APIManager.apiService(url: url, parameter: parameters, completionHandler: completionBlock)

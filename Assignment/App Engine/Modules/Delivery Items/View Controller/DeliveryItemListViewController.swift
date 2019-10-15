@@ -14,7 +14,7 @@ class DeliveryItemListViewController: UIViewController {
         return refControl
     }()
 
-    var tableFooterLoader : UIActivityIndicatorView = {
+    var tableFooterLoader: UIActivityIndicatorView = {
         let loader = UIActivityIndicatorView.init(style: UIActivityIndicatorView.Style.gray)
         return loader
     }()
@@ -52,16 +52,16 @@ class DeliveryItemListViewController: UIViewController {
         self.view.backgroundColor = UIColor.white
         self.view.addSubview(tableView)
         
-        let cornerAnchorForTableView = ConrnerAnchor(top    : (self.topLayoutGuide.bottomAnchor, ViewConstraintConstants.zeroPaddingConstant),
-                                                   bottom   : (self.bottomLayoutGuide.topAnchor, ViewConstraintConstants.zeroPaddingConstant),
-                                                   left     : (self.view.leftAnchor, ViewConstraintConstants.zeroPaddingConstant),
-                                                   right    : (self.view.rightAnchor, ViewConstraintConstants.zeroPaddingConstant)
+        let cornerAnchorForTableView = ConrnerAnchor(top: (self.topLayoutGuide.bottomAnchor, ViewConstraintConstants.zeroPaddingConstant),
+                                                   bottom: (self.bottomLayoutGuide.topAnchor, ViewConstraintConstants.zeroPaddingConstant),
+                                                   left: (self.view.leftAnchor, ViewConstraintConstants.zeroPaddingConstant),
+                                                   right: (self.view.rightAnchor, ViewConstraintConstants.zeroPaddingConstant)
         )
         tableView.addConstraints(cornerConstraints: cornerAnchorForTableView,
-                               centerY  : nil,
-                               centerX  : nil,
-                               height   : ViewConstraintConstants.zeroPaddingConstant,
-                               width    : ViewConstraintConstants.zeroPaddingConstant
+                               centerY: nil,
+                               centerX: nil,
+                               height: ViewConstraintConstants.zeroPaddingConstant,
+                               width: ViewConstraintConstants.zeroPaddingConstant
         )
     }
     
@@ -168,7 +168,7 @@ extension DeliveryItemListViewController: UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DeliveryItemListConstant.cellUniqueIdentifier, for: indexPath) as! DeliveryItemCell
-        cell.plotDataOnCell(withCellItem : viewModel.deliveries[indexPath.row])
+        cell.plotDataOnCell(withCellItem: viewModel.deliveries[indexPath.row])
         return cell
     }
 

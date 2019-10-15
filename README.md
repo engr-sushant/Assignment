@@ -77,6 +77,17 @@ All business logics are handled in view model. View model is responsible to upda
 •    Replace googleAPIKey with API KEY in AppConstants.swift
 
 
+# LINTING
+•    Integration of SwiftLint into an Xcode scheme to keep a codebase consistent and maintainable .
+•    Install the swiftLint via brew and need to add a new "Run Script Phase" with:
+if which swiftlint >/dev/null; then
+swiftlint
+else
+echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
+fi
+•    .swiftlint.yml file is used for basic set of rules . It is placed inside the project folder.
+
+
 # ASSUMPTIONS
 
 •    App is designed for iPhones only.

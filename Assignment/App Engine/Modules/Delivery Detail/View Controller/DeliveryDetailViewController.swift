@@ -89,29 +89,29 @@ class DeliveryDetailViewController: UIViewController {
         self.view.addSubview(borderView)
 
         //Adding constraint to Map View
-        let cornerAnchorForMapView = ConrnerAnchor(top      : (self.topLayoutGuide.bottomAnchor, ViewConstraintConstants.zeroPaddingConstant),
-                                                   bottom   : (borderView.topAnchor, ViewConstraintConstants.paddingConstant),
-                                                   left     : (self.view.leftAnchor, ViewConstraintConstants.zeroPaddingConstant),
-                                                   right    : (self.view.rightAnchor, ViewConstraintConstants.zeroPaddingConstant)
+        let cornerAnchorForMapView = ConrnerAnchor(top: (self.topLayoutGuide.bottomAnchor, ViewConstraintConstants.zeroPaddingConstant),
+                                                   bottom: (borderView.topAnchor, ViewConstraintConstants.paddingConstant),
+                                                   left: (self.view.leftAnchor, ViewConstraintConstants.zeroPaddingConstant),
+                                                   right: (self.view.rightAnchor, ViewConstraintConstants.zeroPaddingConstant)
         )
         mapView.addConstraints(cornerConstraints: cornerAnchorForMapView,
-                               centerY  : nil,
-                               centerX  : nil,
-                               height   : ViewConstraintConstants.zeroPaddingConstant,
-                               width    : ViewConstraintConstants.zeroPaddingConstant
+                               centerY: nil,
+                               centerX: nil,
+                               height: ViewConstraintConstants.zeroPaddingConstant,
+                               width: ViewConstraintConstants.zeroPaddingConstant
         )
         
         //Adding constraint to Border View
-        let cornerAnchorForBorderView = ConrnerAnchor(top       : (self.mapView.bottomAnchor, ViewConstraintConstants.paddingConstant),
-                                                      bottom    : (self.bottomLayoutGuide.topAnchor, ViewConstraintConstants.paddingConstant),
-                                                      left      : (self.view.leftAnchor, ViewConstraintConstants.paddingConstant),
-                                                      right     : (self.view.rightAnchor, ViewConstraintConstants.paddingConstant)
+        let cornerAnchorForBorderView = ConrnerAnchor(top: (self.mapView.bottomAnchor, ViewConstraintConstants.paddingConstant),
+                                                      bottom: (self.bottomLayoutGuide.topAnchor, ViewConstraintConstants.paddingConstant),
+                                                      left: (self.view.leftAnchor, ViewConstraintConstants.paddingConstant),
+                                                      right: (self.view.rightAnchor, ViewConstraintConstants.paddingConstant)
         )
         borderView.addConstraints(cornerConstraints: cornerAnchorForBorderView,
-                                  centerY   : nil,
-                                  centerX   : nil,
-                                  height    : ViewConstraintConstants.zeroPaddingConstant,
-                                  width     : ViewConstraintConstants.zeroPaddingConstant
+                                  centerY: nil,
+                                  centerX: nil,
+                                  height: ViewConstraintConstants.zeroPaddingConstant,
+                                  width: ViewConstraintConstants.zeroPaddingConstant
         )
 
         borderView.addSubview(itemImageView)
@@ -123,10 +123,10 @@ class DeliveryDetailViewController: UIViewController {
                                                            left: (borderView.leftAnchor, ViewConstraintConstants.paddingConstant),
                                                            right: (nil, ViewConstraintConstants.zeroPaddingConstant))
         itemImageView.addConstraints(cornerConstraints: cornerConstraintForItemImgView,
-                                     centerY    : itemDescriptionLbl.centerYAnchor,
-                                     centerX    : nil,
-                                     height     : ViewConstraintConstants.imageHeight,
-                                     width      : ViewConstraintConstants.imageHeight
+                                     centerY: itemDescriptionLbl.centerYAnchor,
+                                     centerX: nil,
+                                     height: ViewConstraintConstants.imageHeight,
+                                     width: ViewConstraintConstants.imageHeight
         )
         
         //Adding constraint to Item Description Label
@@ -136,10 +136,10 @@ class DeliveryDetailViewController: UIViewController {
                                                               right: (borderView.rightAnchor, ViewConstraintConstants.paddingConstant)
         )
         itemDescriptionLbl.addConstraints(cornerConstraints: cornerConstraintForDescriptionLbl,
-                                          centerY   : nil,
-                                          centerX   : nil,
-                                          height    : ViewConstraintConstants.zeroPaddingConstant,
-                                          width     : ViewConstraintConstants.zeroPaddingConstant
+                                          centerY: nil,
+                                          centerX: nil,
+                                          height: ViewConstraintConstants.zeroPaddingConstant,
+                                          width: ViewConstraintConstants.zeroPaddingConstant
         )
         itemDescriptionLbl.heightAnchor.constraint(greaterThanOrEqualToConstant: ViewConstraintConstants.imageHeight).isActive = true
     }

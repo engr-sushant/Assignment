@@ -4,7 +4,7 @@ import CoreData
 
 class CoreDataManager {
     
-    static let shared : CoreDataManager = {
+    static let shared: CoreDataManager = {
         return CoreDataManager()
     }()
 

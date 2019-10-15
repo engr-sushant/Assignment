@@ -81,4 +81,3 @@ extension CoredataManagerTest {
         return DeliveryItem.init(id: 38, itemDescription: "Deliver food to Eric", imageUrl: "https://s3-ap-southeast-1.amazonaws.com/lalamove-mock-api/images/pet-5.jpeg", location: location)
     }
 }
-
