@@ -6,12 +6,12 @@ protocol DeliveryItemViewModelProtocol {
     /*
      Use this method to load data.
      **/
-    func loadData()
+    func loadData(withLoader loaderType: ProgressLoaderType)
     
     /*
      Use this method to refresh data.
      **/
-    func refreshData()
+    func refreshData(withLoader loaderType: ProgressLoaderType)
     
     /*
      Use this method to check bottom dragging.

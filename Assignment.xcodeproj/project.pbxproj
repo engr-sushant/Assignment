@@ -18,10 +18,10 @@
 		5F21F84D2345E6C200206837 /* InvalidResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F21F84C2345E6C200206837 /* InvalidResponse.json */; };
 		5F21F84F2345E6E100206837 /* ItemsList.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F21F84E2345E6E100206837 /* ItemsList.json */; };
 		5F535C6423543CE3003D3890 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F535C6323543CE3003D3890 /* APIConstants.swift */; };
+		5F535C6723558EA0003D3890 /* AppEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F535C6623558EA0003D3890 /* AppEnum.swift */; };
 		5F5DD7DC234EEB0700EB9707 /* CoredataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DD7DB234EEB0700EB9707 /* CoredataManagerProtocol.swift */; };
 		5F5DD7E0234EF06C00EB9707 /* APIManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DD7DF234EF06C00EB9707 /* APIManagerProtocol.swift */; };
 		5F5DD7E7234EFB1C00EB9707 /* DeliveryItemViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DD7E6234EFB1C00EB9707 /* DeliveryItemViewModelProtocol.swift */; };
-		5F5DD7ED234EFD9500EB9707 /* DeliveryDetailViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5DD7EC234EFD9500EB9707 /* DeliveryDetailViewModelProtocol.swift */; };
 		5F904A1323505C56004835A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F904A1223505C56004835A6 /* Constants.swift */; };
 		5F904A1B23508D47004835A6 /* CommonClassTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F904A1A23508D47004835A6 /* CommonClassTest.swift */; };
 		5F904A1E2350A80B004835A6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F904A1D2350A80B004835A6 /* Reachability.swift */; };
@@ -76,10 +76,10 @@
 		5F21F84C2345E6C200206837 /* InvalidResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = InvalidResponse.json; sourceTree = "<group>"; };
 		5F21F84E2345E6E100206837 /* ItemsList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ItemsList.json; sourceTree = "<group>"; };
 		5F535C6323543CE3003D3890 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		5F535C6623558EA0003D3890 /* AppEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnum.swift; sourceTree = "<group>"; };
 		5F5DD7DB234EEB0700EB9707 /* CoredataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoredataManagerProtocol.swift; sourceTree = "<group>"; };
 		5F5DD7DF234EF06C00EB9707 /* APIManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerProtocol.swift; sourceTree = "<group>"; };
 		5F5DD7E6234EFB1C00EB9707 /* DeliveryItemViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryItemViewModelProtocol.swift; sourceTree = "<group>"; };
-		5F5DD7EC234EFD9500EB9707 /* DeliveryDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryDetailViewModelProtocol.swift; sourceTree = "<group>"; };
 		5F904A1223505C56004835A6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5F904A1A23508D47004835A6 /* CommonClassTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonClassTest.swift; sourceTree = "<group>"; };
 		5F904A1D2350A80B004835A6 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -175,6 +175,14 @@
 				5F21F84E2345E6E100206837 /* ItemsList.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		5F535C6523558E8C003D3890 /* AppEnum */ = {
+			isa = PBXGroup;
+			children = (
+				5F535C6623558EA0003D3890 /* AppEnum.swift */,
+			);
+			path = AppEnum;
 			sourceTree = "<group>";
 		};
 		5F904A1923508D2B004835A6 /* CommonClassTest */ = {
@@ -295,6 +303,7 @@
 				5FD3C3E3233F89C9007495A4 /* AppConstants */,
 				5FD3C3E4233F89D2007495A4 /* CommonClass */,
 				5FD3C3E6233F89ED007495A4 /* Extension */,
+				5F535C6523558E8C003D3890 /* AppEnum */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -427,7 +436,6 @@
 			isa = PBXGroup;
 			children = (
 				5FD7FAA423431ECE006DCA2B /* DeliveryDetailViewModel.swift */,
-				5F5DD7EC234EFD9500EB9707 /* DeliveryDetailViewModelProtocol.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -674,7 +682,6 @@
 			files = (
 				5F904A202350A820004835A6 /* ReachabilityProtocol.swift in Sources */,
 				5FD3C402233F9FF9007495A4 /* DeliveryItem.swift in Sources */,
-				5F5DD7ED234EFD9500EB9707 /* DeliveryDetailViewModelProtocol.swift in Sources */,
 				5F5DD7DC234EEB0700EB9707 /* CoredataManagerProtocol.swift in Sources */,
 				5FD7FAA523431ECE006DCA2B /* DeliveryDetailViewModel.swift in Sources */,
 				5FD3C407233FA52B007495A4 /* DeliveryItemListViewController.swift in Sources */,
@@ -695,6 +702,7 @@
 				5F535C6423543CE3003D3890 /* APIConstants.swift in Sources */,
 				5F5DD7E7234EFB1C00EB9707 /* DeliveryItemViewModelProtocol.swift in Sources */,
 				5FD3C3F4233F9147007495A4 /* LocalizedString.swift in Sources */,
+				5F535C6723558EA0003D3890 /* AppEnum.swift in Sources */,
 				5FD3C3EE233F8BB0007495A4 /* CommonClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

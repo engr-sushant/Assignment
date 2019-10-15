@@ -1,10 +1,11 @@
 import UIKit
 
-class DeliveryItemListViewController: UIViewController {
+struct DeliveryItemListConstant {
+    static let estimatedRowHeight: CGFloat = 100
+    static let cellUniqueIdentifier = "Cell"
+}
 
-    // MARK: - Constants
-    let estimatedRowHeight: CGFloat = 100
-    let cellUniqueIdentifier = "Cell"
+class DeliveryItemListViewController: UIViewController {
 
     // MARK: - Variables
     var tableView = UITableView()
@@ -19,7 +20,7 @@ class DeliveryItemListViewController: UIViewController {
     }()
     
     var viewModel = DeliveryItemViewModel()
-
+    
     // MARK: - View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,7 @@ class DeliveryItemListViewController: UIViewController {
         self.setupTableView()
         self.layoutTableView()
         self.setupCompletionHandlers()
-        self.viewModel.loadData()
+        self.viewModel.loadData(withLoader: .APICallingLoader)
     }
     
     // MARK: - Setup Navigation Bar
@@ -39,7 +40,7 @@ class DeliveryItemListViewController: UIViewController {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(DeliveryItemCell.self, forCellReuseIdentifier: cellUniqueIdentifier)
+        tableView.register(DeliveryItemCell.self, forCellReuseIdentifier: DeliveryItemListConstant.cellUniqueIdentifier)
         tableView.separatorStyle = .none
         tableView.tableFooterView = tableFooterLoader
         refreshControl.addTarget(self, action: #selector(self.refreshTableViewData), for: .valueChanged)
@@ -76,48 +77,48 @@ class DeliveryItemListViewController: UIViewController {
     
     // MARK: - Handle Completion With Success
     func handleCompletionWithSuccess() {
-        viewModel.handleCompletionWithSuccess = {[weak self] in
+        viewModel.handleCompletionWithSuccess = {[weak self] loaderType in
             DispatchQueue.main.async {
                 self?.tableView.isHidden = false
                 self?.tableView.reloadData()
-                self?.updateLoader()
+                self?.stopProgressLoader(withLoader: loaderType)
             }
         }
     }
     
     // MARK: - Handle Completion With No Data
     func handleCompletionWithNoData() {
-        viewModel.handleCompletionWithNoData = {[weak self] in
+        viewModel.handleCompletionWithNoData = {[weak self] loaderType in
             DispatchQueue.main.async {
                 CommonClass.shared.showToastWithTitle(messageBody: LocalizedString.NORESULTFOUND, onViewController: self)
-                self?.updateLoader()
+                self?.stopProgressLoader(withLoader: loaderType)
             }
         }
     }
     
     // MARK: - Handle Completion with Error
     func handleCompletionWithError() {
-        viewModel.handleCompletionWithError = {[weak self] error in
+        viewModel.handleCompletionWithError = {[weak self] (loaderType, error) in
             DispatchQueue.main.async {
                 CommonClass.shared.showToastWithTitle(messageBody: error.localizedDescription, onViewController: self)
-                self?.updateLoader()
+                self?.stopProgressLoader(withLoader: loaderType)
             }
         }
     }
     
     // MARK: - Handle Internet error
     func handleInternetError() {
-        viewModel.handleInternetError = {[weak self] in
+        viewModel.handleInternetError = {[weak self] loaderType in
             DispatchQueue.main.async {
                 CommonClass.shared.showToastWithTitle(messageBody: LocalizedString.NOINTERNETCONNECTION, onViewController: self)
-                self?.updateLoader()
+                self?.stopProgressLoader(withLoader: loaderType)
             }
         }
     }
     
     // MARK: - Completion Next Page Loading
     func handleNextPageLoading() {
-        viewModel.handleNextPageLoading = {[weak self] in
+        viewModel.handleNextPageLoading = {[weak self] _ in
             DispatchQueue.main.async {
                 self?.tableView.tableFooterView?.isHidden = false
                 self?.tableFooterLoader.startAnimating()
@@ -127,16 +128,21 @@ class DeliveryItemListViewController: UIViewController {
     
     // MARK: - Refresh Table View Data
     @objc func refreshTableViewData() {
-        viewModel.refreshData()
+        viewModel.refreshData(withLoader: .PullToRefreshLoader)
     }
     
-    // MARK: - Update Loader
-    func updateLoader() {
+    // MARK: - Stop Progress Loader
+    func stopProgressLoader(withLoader loaderType: ProgressLoaderType) {
         DispatchQueue.main.async {
-            self.tableView.tableFooterView?.isHidden = true
-            self.tableFooterLoader.stopAnimating()
-            CommonClass.shared.hideLoader()
-            self.refreshControl.endRefreshing()
+            switch loaderType {
+            case .APICallingLoader:
+                CommonClass.shared.hideLoader()
+            case .PullToRefreshLoader:
+                self.refreshControl.endRefreshing()
+            case .BottomDraggingLoader:
+                self.tableView.tableFooterView?.isHidden = true
+                self.tableFooterLoader.stopAnimating()
+            }
         }
     }
     
@@ -151,7 +157,7 @@ class DeliveryItemListViewController: UIViewController {
 // MARK: - Extension For Table View Delegate And Datasource Methods
 extension DeliveryItemListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return estimatedRowHeight
+        return DeliveryItemListConstant.estimatedRowHeight
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -163,7 +169,7 @@ extension DeliveryItemListViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellUniqueIdentifier, for: indexPath) as! DeliveryItemCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: DeliveryItemListConstant.cellUniqueIdentifier, for: indexPath) as! DeliveryItemCell
         cell.plotDataOnCell(withCellItem : viewModel.deliveries[indexPath.row])
         return cell
     }

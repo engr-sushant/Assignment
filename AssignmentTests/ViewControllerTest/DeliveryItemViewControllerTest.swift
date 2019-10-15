@@ -8,7 +8,7 @@ class DeliveryItemViewControllerTest: XCTestCase {
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         super.setUp()
-        let navigationController = sharedAppDelegate.window?.rootViewController as! UINavigationController
+        let navigationController = AppConstants.sharedAppDelegate.window?.rootViewController as! UINavigationController
         deliveryItemVC = navigationController.viewControllers[0] as? DeliveryItemListViewController
     }
 
@@ -36,7 +36,7 @@ class DeliveryItemViewControllerTest: XCTestCase {
     }
     
     func testHideLoader() {
-        deliveryItemVC.updateLoader()
+        deliveryItemVC.stopProgressLoader(withLoader: .BottomDraggingLoader)
         XCTAssertTrue(deliveryItemVC.tableFooterLoader.isHidden)
     }
     

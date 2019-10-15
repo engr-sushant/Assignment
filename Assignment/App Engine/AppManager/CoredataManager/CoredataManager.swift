@@ -29,14 +29,16 @@ class CoreDataManager {
 // MARK: - Extension CoreDataManger
 extension CoreDataManager: CoredataManagerProtocol {
     
-    // MARK: - Save Delivery Item To Local DB
-    func saveDeliveryItemToLocalDB(items: [DeliveryItem]) {
+    // MARK: - Save Delivery Items To Local DB
+    func saveDeliveryItemsToLocalDB(items: [DeliveryItem]) {
         persistentContainer.performBackgroundTask { (context) in
             for item in items {
                 let entityItem = EntityItem(context: context)
-                entityItem.id = Int16(item.id)
-                entityItem.itemDescription = item.description!
-                entityItem.imageUrl = item.imageUrl
+                if let id = item.id, let itemDescription = item.description, let imageUrl = item.imageUrl {
+                    entityItem.id = Int16(id)
+                    entityItem.itemDescription = itemDescription
+                    entityItem.imageUrl = imageUrl
+                }
                 let location = EntityLocation(context: context)
                 if let lat = item.location?.lat, let lng = item.location?.lng, let address = item.location?.address {
                     location.latitude = lat
@@ -53,8 +55,8 @@ extension CoreDataManager: CoredataManagerProtocol {
         }
     }
     
-    // MARK: - Delete Delivery Item From Local DB
-    func deleteDeliveryItemFromLocalDB(completion: @escaping ((Error?) -> Void)) {
+    // MARK: - Delete Delivery Items From Local DB
+    func deleteDeliveryItemsFromLocalDB(completion: @escaping ((Error?) -> Void)) {
         let managedObjectContext = persistentContainer.newBackgroundContext()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: CoredataConstants.entityNameItem)
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
@@ -66,8 +68,8 @@ extension CoreDataManager: CoredataManagerProtocol {
         }
     }
     
-    // MARK: - Fetch Delivery Item From Local DB
-    func fetchDeliveryItemFromLocalDB(offset: Int, completion: @escaping (([DeliveryItem], Error?) -> Void)) {
+    // MARK: - Fetch Delivery Items From Local DB
+    func fetchDeliveryItemsFromLocalDB(offset: Int, completion: @escaping (([DeliveryItem], Error?) -> Void)) {
         var items = [DeliveryItem]()
         let managedContext = self.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: CoredataConstants.entityNameItem)

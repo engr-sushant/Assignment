@@ -32,10 +32,10 @@ class CommonClass: NSObject {
     }
     
     // MARK: - Use this method to show toast message
-    func showToastWithTitle(messageBody: String, onViewController vc: UIViewController?) {
-        guard let vc = vc else {
+    func showToastWithTitle(messageBody: String, onViewController viewController: UIViewController?) {
+        guard let viewController = viewController else {
             return
         }
-        vc.view.makeToast(messageBody)
+        viewController.view.makeToast(messageBody)
     }
 }

@@ -41,32 +41,32 @@ class CoredataManagerTest: XCTestCase {
         super.tearDown()
     }
     
-    func testSaveDeliveryItemToLocalDB() {
+    func testsaveDeliveryItemsToLocalDB() {
         guard let manager = self.coreDataManager else {
             XCTFail("coredatamanger is nil")
             return
         }
         _ = expectation(forNotification: NSNotification.Name(rawValue: Notification.Name.NSManagedObjectContextDidSave.rawValue), object: nil, handler: nil)
         let item = getDummyItem()
-        manager.saveDeliveryItemToLocalDB(items: [item])
+        manager.saveDeliveryItemsToLocalDB(items: [item])
         //Assert save is called via notification (wait)
         waitForExpectations(timeout: 1, handler: nil)
     }
     
-    func testFetchDeliveryItemFromLocalDB() {
+    func testFetchDeliveryItemsFromLocalDB() {
         guard let manager = self.coreDataManager else {
             XCTFail("coredatamanger is nil")
             return
         }
         let item = getDummyItem()
-        manager.saveDeliveryItemToLocalDB(items: [item, item])
+        manager.saveDeliveryItemsToLocalDB(items: [item, item])
         let exp = expectation(description: "Test after a seconds")
         let result = XCTWaiter.wait(for: [exp], timeout: 1.0)
         guard result == XCTWaiter.Result.timedOut else {
             XCTFail("Delay interrupted")
             return
         }
-        manager.fetchDeliveryItemFromLocalDB(offset: 0) { (items, err) in
+        manager.fetchDeliveryItemsFromLocalDB(offset: 0) { (items, err) in
             XCTAssertTrue(items.count == 2)
         }
     }

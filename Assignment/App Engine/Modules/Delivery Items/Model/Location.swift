@@ -1,10 +1,5 @@
 import UIKit
 
-//MARK:- Location Model Keys
-let kLatitude   = "lat"
-let kLongitude  = "lng"
-let kAddress    = "address"
-
 struct Location: Codable {
 
     var lat: Double?

@@ -48,7 +48,7 @@ class DeliveryDetailViewControllerTest: XCTestCase {
     func testPlotDataWithNilItemDescription() {
         itemDetailVC.itemDetailVM.item.description = nil
         itemDetailVC.plotData()
-        XCTAssertTrue(itemDetailVC.itemDescriptionLbl.text == kEmptyString)
+        XCTAssertTrue(itemDetailVC.itemDescriptionLbl.text == AppConstants.kEmptyString)
     }
 }
 

@@ -1,6 +1,10 @@
 import UIKit
 import SDWebImage
 
+struct DeliveryItemCellConstant {
+    static let numberOfLine = 0
+}
+
 class DeliveryItemCell: UITableViewCell {
     
     // MARK: - UI Elements
@@ -39,7 +43,26 @@ class DeliveryItemCell: UITableViewCell {
         //Setup Description Label
         descriptionLbl.textAlignment = NSTextAlignment.left
         descriptionLbl.textColor = UIColor.black
-        descriptionLbl.numberOfLines = 0
+        descriptionLbl.numberOfLines = DeliveryItemCellConstant.numberOfLine
+    }
+    
+    // MARK: - Plot Data On Cell
+    func plotDataOnCell(withCellItem item: DeliveryItem) {
+        if let url = item.imageUrl {
+            self.cellImageView.sd_setImage(with: URL(string: url), placeholderImage: AppPlaceholderImageConstants.deliveryItem)
+        } else {
+            self.cellImageView.image = AppPlaceholderImageConstants.deliveryItem
+        }
+        
+        guard let desc = item.description else {
+            self.descriptionLbl.text = AppConstants.kEmptyString
+            return
+        }
+        self.descriptionLbl.text = desc
+        guard let locationAddress = item.location?.address else {
+            return
+        }
+        self.descriptionLbl.text = desc + LocalizedString.AT + locationAddress
     }
     
     // MARK: - Add Constraints To UI Elements
@@ -89,21 +112,5 @@ class DeliveryItemCell: UITableViewCell {
                                      height     : ViewConstraintConstants.imageHeight,
                                      width      : ViewConstraintConstants.imageHeight
         )
-    }
-    
-    // MARK: - Plot Data On Cell
-    func plotDataOnCell(withCellItem item: DeliveryItem) {
-        
-        self.cellImageView.sd_setImage(with: URL(string: item.imageUrl), placeholderImage: AppPlaceholderImageConstants.deliveryItem)
-        
-        guard let desc = item.description else {
-            self.descriptionLbl.text = kEmptyString
-            return
-        }
-        self.descriptionLbl.text = desc
-        guard let locationAddress = item.location?.address else {
-            return
-        }
-        self.descriptionLbl.text = desc + LocalizedString.AT + locationAddress
     }
 }

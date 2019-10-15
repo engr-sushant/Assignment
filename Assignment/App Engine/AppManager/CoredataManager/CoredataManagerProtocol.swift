@@ -3,17 +3,17 @@ import Foundation
 protocol CoredataManagerProtocol {
 
     /*
-     Use this method to save delivery item to local DB.
+     Use this method to save delivery items to local DB.
      **/
-    func saveDeliveryItemToLocalDB(items: [DeliveryItem])
+    func saveDeliveryItemsToLocalDB(items: [DeliveryItem])
     
     /*
-     Use this method to delete delivery item from local DB.
+     Use this method to delete delivery items from local DB.
      **/
-    func deleteDeliveryItemFromLocalDB(completion: @escaping ((Error?) -> Void))
+    func deleteDeliveryItemsFromLocalDB(completion: @escaping ((Error?) -> Void))
     
     /*
-     Use this method to fetch delivery item from local DB.
+     Use this method to fetch delivery items from local DB.
      **/
-    func fetchDeliveryItemFromLocalDB(offset: Int, completion: @escaping (([DeliveryItem], Error?) -> Void))
+    func fetchDeliveryItemsFromLocalDB(offset: Int, completion: @escaping (([DeliveryItem], Error?) -> Void))
 }

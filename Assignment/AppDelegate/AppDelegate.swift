@@ -10,7 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setInitialViewController()
-        GMSServices.provideAPIKey(googleAPIKey)
+        GMSServices.provideAPIKey(AppConstants.googleAPIKey)
         FirebaseApp.configure()
         return true
     }
@@ -46,7 +46,7 @@ extension AppDelegate {
     func setInitialViewController() {
         let rootVC = DeliveryItemListViewController()
         let navigationBarVC = UINavigationController(rootViewController: rootVC)
-        sharedAppDelegate.window?.makeKeyAndVisible()
-        sharedAppDelegate.window?.rootViewController = navigationBarVC
+        AppConstants.sharedAppDelegate.window?.makeKeyAndVisible()
+        AppConstants.sharedAppDelegate.window?.rootViewController = navigationBarVC
     }
 }

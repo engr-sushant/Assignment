@@ -2,11 +2,6 @@
 
 •    Shows list of items to be delivered. Detail page shows delivery location of an item in map view and its details.
 
-# SCREENSHOTS
-
-![deliveryItems](https://user-images.githubusercontent.com/37066441/66645972-71a2c480-ec42-11e9-8e47-420e7ef7a991.png)
-
-![deliveryDetails](https://user-images.githubusercontent.com/37066441/66646013-8bdca280-ec42-11e9-9547-536ad218bfc0.png)
 
 # INSTALLATION
 
@@ -38,23 +33,24 @@
 
 # DESIGN PATTERN
 
-![mvvmImage](https://user-images.githubusercontent.com/37066441/66733834-79e74380-ee7e-11e9-88cb-1e5922e71d09.jpg)
+![assignmentMVVM](https://user-images.githubusercontent.com/37066441/66805002-897b9080-ef41-11e9-83b4-b925a1fdb6a4.jpg)
 
 
 •    MVVM
 The Model View ViewModel (MVVM) is an architectural pattern. Also protocols are used to make the code loosely coupled, which makes code testable without subclassing the classes for mocking.
 
 •    Model: 
-A Model is responsible for exposing data in a way that is easily accessible. It manages and stores data received from server and core data.
+A Model is responsible for exposing data in a way that is easily accessible. It manages and stores data received from server and core data. API manager and Coredata manager are used to create and update model to show the data on table view. 
 
 •    View: 
-View controllers come under this layer. View controller is responsible for laying out user interface and interact with users.
+View controllers come under this layer. View controller is responsible for laying out user interface and interact with users. View model object are used for calling view model methods, and completion handlers are used to receive the data and show them on table view.
 
 •    ViewModel: 
 All business logics are handled in view model. View model is responsible to update model, based on events received from view and pass data to view to update UI elements for user action.
 
 
 # LIBRARIES USED
+
 •    Alamofire
 
 •    GoogleMaps
@@ -81,17 +77,13 @@ All business logics are handled in view model. View model is responsible to upda
 •    Replace GOOGLEAPIKEY with API KEY in Constants.swift
 
 
-# LINTING
-•    Integration of SwiftLint into an Xcode scheme to keep a codebase consistent and maintainable .
+# ASSUMPTIONS
 
-•    Install the swiftLint via brew and need to add a new "Run Script Phase" with:
-if which swiftlint >/dev/null; then
-swiftlint
-else
-echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
-fi
+•    App is designed for iPhones only.
 
-•    .swiftlint.yml file is used for basic set of rules . It is placed inside the project folder.
+•    App is tested on iPhone X, iPhone SE, iPhone 6 plus, iPhone 6.
+
+•    Localization is supported but only English localize string file is maintained.
 
 
 # FEATURES
@@ -114,13 +106,16 @@ fi
 
 -    When user scroll down to the table, server request is made to fetch more items and it is displayed on table and saved using CoreData. 
 
+-    Next time when user launch app, if data is available in db then it fetches data using CoreData and displays on table view.
+
+
 •    ITEM DETAILS
 
 -    User can get details of items listed by tapping on the item. It will navigate to new screen. 
 
 -    Detail screen shows the delivery location of item on map view and details of user to whom item is to be delivered. 
 
-•    Technique
+•    CODING TECHNIQUE
 
 -    Protocol oriented programming. 
 
@@ -128,24 +123,27 @@ fi
 
 
 # UNIT TESTING
+
 •    Unit testing is done by using XCTest.
 
 •    To run tests click Product->Test or (cmd+U)
 
 
-# ASSUMPTIONS
-•    App is designed for iPhones only.
+# SCREENSHOTS
 
-•    App is tested on iPhoneX, iPhone SE, iPhone 6 plus, iPhone 6.
+![deliveryItems](https://user-images.githubusercontent.com/37066441/66645972-71a2c480-ec42-11e9-8e47-420e7ef7a991.png)
 
-•    Localization is supported but only English localize string file is maintained.
+![deliveryDetails](https://user-images.githubusercontent.com/37066441/66646013-8bdca280-ec42-11e9-9547-536ad218bfc0.png)
+
 
 # IMPROVEMENTS
+
 •    UI could be done more interactive and user friendly.
 
 •    UI Testing is not implemented.
 
 # LICENSE
+
 MIT License
 Copyright (c) 2019
 Permission is hereby granted, free of charge, to any person obtaining a copy

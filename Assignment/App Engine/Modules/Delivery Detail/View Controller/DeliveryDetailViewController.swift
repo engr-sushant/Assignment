@@ -1,15 +1,17 @@
 import UIKit
 import GoogleMaps
 
+struct DeliveryDetailConstatnt {
+    static let mapZoom: Float = 15.0
+    static let zeroNumberOfLine: Int = 0
+}
+
 class DeliveryDetailViewController: UIViewController {
 
     // MARK: - UI Elements
     var itemImageView = UIImageView()
     var itemDescriptionLbl = UILabel()
     var borderView = UIView()
-
-    // MARK: - Constants
-    let mapZoom: Float = 15.0
     
     // MARK: - Variables
     var itemDetailVM: DeliveryDetailViewModel!
@@ -33,7 +35,7 @@ class DeliveryDetailViewController: UIViewController {
     // MARK: - Setup Map View
     func setupMapView() {
         if let location = itemDetailVM.item.location, let lat = location.lat, let long = location.lng, let address = location.address {
-            let camera = GMSCameraPosition.init(latitude: lat, longitude: long, zoom: mapZoom)
+            let camera = GMSCameraPosition.init(latitude: lat, longitude: long, zoom: DeliveryDetailConstatnt.mapZoom)
             mapView.camera = camera
             
             //Setup marker on Map View
@@ -54,12 +56,31 @@ class DeliveryDetailViewController: UIViewController {
         itemImageView.contentMode = UIView.ContentMode.scaleAspectFill
         
         //Setup Description Label
-        itemDescriptionLbl.numberOfLines = 0
+        itemDescriptionLbl.numberOfLines = DeliveryDetailConstatnt.zeroNumberOfLine
         itemDescriptionLbl.textAlignment = NSTextAlignment.left
         
         //Setup Border View
         borderView.layer.borderColor = BorderViewConstants.borderColor.cgColor
         borderView.layer.borderWidth = BorderViewConstants.borderWidth
+    }
+    
+    // MARK: - Plot Data
+    func plotData() {
+        if let url = itemDetailVM.item.imageUrl {
+            self.itemImageView.sd_setImage(with: URL(string: url), placeholderImage: AppPlaceholderImageConstants.deliveryItem)
+        } else {
+            self.itemImageView.image = AppPlaceholderImageConstants.deliveryItem
+        }
+        
+        guard let desc = itemDetailVM.item.description else {
+            self.itemDescriptionLbl.text = AppConstants.kEmptyString
+            return
+        }
+        self.itemDescriptionLbl.text = desc
+        guard let locationAddress = itemDetailVM.item.location?.address else {
+            return
+        }
+        self.itemDescriptionLbl.text = desc + LocalizedString.AT + locationAddress
     }
     
     // MARK: - Add Constraints to UI Elements
@@ -121,20 +142,5 @@ class DeliveryDetailViewController: UIViewController {
                                           width     : ViewConstraintConstants.zeroPaddingConstant
         )
         itemDescriptionLbl.heightAnchor.constraint(greaterThanOrEqualToConstant: ViewConstraintConstants.imageHeight).isActive = true
-    }
-    
-    // MARK: - Plot Data
-    func plotData() {
-        self.itemImageView.sd_setImage(with: URL(string: itemDetailVM.item.imageUrl), placeholderImage: AppPlaceholderImageConstants.deliveryItem)
-
-        guard let desc = itemDetailVM.item.description else {
-            self.itemDescriptionLbl.text = kEmptyString
-            return
-        }
-        self.itemDescriptionLbl.text = desc
-        guard let locationAddress = itemDetailVM.item.location?.address else {
-            return
-        }
-        self.itemDescriptionLbl.text = desc + LocalizedString.AT + locationAddress
     }
 }

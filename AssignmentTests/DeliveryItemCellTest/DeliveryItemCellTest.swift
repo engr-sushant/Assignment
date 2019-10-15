@@ -29,13 +29,13 @@ class DeliveryItemCellTest: XCTestCase {
         item.description = nil
         item.location?.address = nil
         itemCell.plotDataOnCell(withCellItem: item)
-        XCTAssertTrue(itemCell.descriptionLbl.text == kEmptyString)
+        XCTAssertTrue(itemCell.descriptionLbl.text == AppConstants.kEmptyString)
     }
     
     func testPlotDataWithNotNilItem() {
         let item = getDummyItem()
         itemCell.plotDataOnCell(withCellItem: item)
-        XCTAssertTrue(itemCell.descriptionLbl.text != kEmptyString)
+        XCTAssertTrue(itemCell.descriptionLbl.text != AppConstants.kEmptyString)
     }
 
 }

@@ -50,7 +50,7 @@ class DeliveryItemViewModelTest: XCTestCase {
         if let viewModel = viewModel {
             mockcoredatamanager.shouldReturnEmptyData = true //to make sure we do not get data from database and we hit api to get data
             viewModel.isRequestInProgress = false
-            viewModel.loadData()
+            viewModel.loadData(withLoader: .APICallingLoader)
             XCTAssertTrue(viewModel.deliveries.count == 1)
         }
     }
@@ -60,7 +60,7 @@ class DeliveryItemViewModelTest: XCTestCase {
             let item = getDummyItem()
             viewModel.deliveries = [item, item] //on refresh array count will change
             mockcoredatamanager.shouldReturnEmptyData = true
-            viewModel.refreshData()
+            viewModel.refreshData(withLoader: .APICallingLoader)
             XCTAssertTrue(viewModel.deliveries.count == 1)
         }
     }
@@ -106,7 +106,7 @@ class MockCoreDataManager: CoredataManagerProtocol {
     var shouldReturnEmptyData: Bool!
     var shouldReturnErr: Bool!
     
-    func fetchDeliveryItemFromLocalDB(offset: Int, completion: @escaping (([DeliveryItem], Error?) -> Void)) {
+    func fetchDeliveryItemsFromLocalDB(offset: Int, completion: @escaping (([DeliveryItem], Error?) -> Void)) {
         // Failure
         guard !shouldReturnErr else {
             //return error
@@ -127,11 +127,11 @@ class MockCoreDataManager: CoredataManagerProtocol {
         completion([item], nil)
     }
     
-    func deleteDeliveryItemFromLocalDB(completion: @escaping ((Error?) -> Void)) {
+    func deleteDeliveryItemsFromLocalDB(completion: @escaping ((Error?) -> Void)) {
         //mock delete
     }
     
-    func saveDeliveryItemToLocalDB(items: [DeliveryItem]) {
+    func saveDeliveryItemsToLocalDB(items: [DeliveryItem]) {
         //mock save
     }
 }
