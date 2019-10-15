@@ -14,8 +14,17 @@ class DeliveryDetailViewController: UIViewController {
     var borderView = UIView()
     
     // MARK: - Variables
-    var itemDetailVM: DeliveryDetailViewModel!
     var mapView = GMSMapView()
+    
+    var itemDetailVM: DeliveryDetailViewModel
+    init(_ itemDetailVM: DeliveryDetailViewModel) {
+        self.itemDetailVM = itemDetailVM
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - View Did Load
     override func viewDidLoad() {

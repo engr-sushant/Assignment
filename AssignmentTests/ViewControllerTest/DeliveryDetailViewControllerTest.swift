@@ -8,9 +8,8 @@ class DeliveryDetailViewControllerTest: XCTestCase {
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         super.setUp()
-        itemDetailVC = DeliveryDetailViewController()
         let viewModel = DeliveryDetailViewModel.init(withItem: getDummyItem())
-        itemDetailVC.itemDetailVM = viewModel
+        itemDetailVC = DeliveryDetailViewController.init(viewModel)
     }
 
     override func tearDown() {

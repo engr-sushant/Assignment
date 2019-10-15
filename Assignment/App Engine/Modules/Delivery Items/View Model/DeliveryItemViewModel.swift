@@ -111,6 +111,7 @@ extension DeliveryItemViewModel: DeliveryItemViewModelProtocol {
     // MARK: - Refresh Data
     func refreshData(withLoader loaderType: ProgressLoaderType) {
         guard !isRequestInProgress else {
+            self.handleCompletionWithSuccess?(loaderType)
             return
         }
         self.fetchDeliveriesFromServer(isRefreshData: true, loaderType: loaderType)
@@ -119,6 +120,9 @@ extension DeliveryItemViewModel: DeliveryItemViewModelProtocol {
     // MARK: - Check Bottom Dragging
     func checkBottomDragging(tblOffset: CGFloat, maxHght: CGFloat) {
         if tblOffset >= maxHght && !(deliveries.isEmpty) {
+            guard !isRequestInProgress else {
+                return
+            }
             handleNextPageLoading?(.BottomDraggingLoader)
             loadData(withLoader: .BottomDraggingLoader)
         }

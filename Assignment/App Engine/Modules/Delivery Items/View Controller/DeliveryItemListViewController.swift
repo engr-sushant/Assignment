@@ -16,6 +16,7 @@ class DeliveryItemListViewController: UIViewController {
 
     var tableFooterLoader: UIActivityIndicatorView = {
         let loader = UIActivityIndicatorView.init(style: UIActivityIndicatorView.Style.gray)
+        loader.hidesWhenStopped = true
         return loader
     }()
     
@@ -78,7 +79,6 @@ class DeliveryItemListViewController: UIViewController {
     func handleCompletionWithSuccess() {
         viewModel.handleCompletionWithSuccess = {[weak self] loaderType in
             DispatchQueue.main.async {
-                self?.tableView.isHidden = false
                 self?.tableView.reloadData()
                 self?.stopProgressLoader(withLoader: loaderType)
             }
@@ -136,9 +136,9 @@ class DeliveryItemListViewController: UIViewController {
             switch loaderType {
             case .APICallingLoader:
                 CommonClass.shared.hideLoader()
-            case .PullToRefreshLoader, .BottomDraggingLoader:
+            case .PullToRefreshLoader:
                 self.refreshControl.endRefreshing()
-                self.tableView.tableFooterView?.isHidden = true
+            case .BottomDraggingLoader:
                 self.tableFooterLoader.stopAnimating()
             }
         }
@@ -146,8 +146,7 @@ class DeliveryItemListViewController: UIViewController {
     
     // MARK: - Navigate to Delivery Item Detail Screen
     func navigateToDeliveryItemDetail(withItemDetailVM itemDetailVM: DeliveryDetailViewModel) {
-        let itemDetailVC = DeliveryDetailViewController()
-        itemDetailVC.itemDetailVM = itemDetailVM
+        let itemDetailVC = DeliveryDetailViewController.init(itemDetailVM)
         self.navigationController?.pushViewController(itemDetailVC, animated: true)
     }
 }

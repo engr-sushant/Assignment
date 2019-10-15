@@ -1,6 +1,13 @@
 import Foundation
 import UIKit
 
+// MARK: - App Constants
+struct AppConstants {
+    static let googleAPIKey: String = "AIzaSyC9trrzekwJS2fF4kWHRx99cvbyTDKdfK0"
+    static let sharedAppDelegate = UIApplication.shared.delegate as! AppDelegate
+    static let kEmptyString = ""
+}
+
 // MARK: - View Constraints Constants
 struct ViewConstraintConstants {
     static let paddingConstant: CGFloat        = 10
@@ -23,5 +30,5 @@ struct BorderViewConstants {
 
 // MARK: - App Default Placeholder Image Constants
 struct AppPlaceholderImageConstants {
-    static let deliveryItem: UIImage    = #imageLiteral(resourceName: "default_placeholder")
+    static let deliveryItem: UIImage = #imageLiteral(resourceName: "default_placeholder")
 }
