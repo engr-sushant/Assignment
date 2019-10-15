@@ -137,9 +137,8 @@ class DeliveryItemListViewController: UIViewController {
             switch loaderType {
             case .APICallingLoader:
                 CommonClass.shared.hideLoader()
-            case .PullToRefreshLoader:
+            case .PullToRefreshLoader, .BottomDraggingLoader:
                 self.refreshControl.endRefreshing()
-            case .BottomDraggingLoader:
                 self.tableView.tableFooterView?.isHidden = true
                 self.tableFooterLoader.stopAnimating()
             }

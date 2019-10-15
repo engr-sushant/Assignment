@@ -81,7 +81,7 @@ All business logics are handled in view model. View model is responsible to upda
 
 •    App is designed for iPhones only.
 
-•    App is tested on iPhone X, iPhone SE, iPhone 6 plus, iPhone 6.
+•    App is tested on iPhone X, iPhone SE, iPhone 6s series, iPhone 7 series.
 
 •    Localization is supported but only English localize string file is maintained.
 
