@@ -21,7 +21,7 @@ class CoreDataManager {
     // MARK: - Convert Local DB Item Model Into Delivery Item model
     private func convertLocalDBItemModelIntoDeliveryItemModel(dbModel: EntityItem) -> DeliveryItem {
         let location = Location(latitude: dbModel.location?.latitude, longitude: dbModel.location?.longitude, address: dbModel.location?.address)
-        let item = DeliveryItem.init(id: (Int(dbModel.id)), itemDescription: dbModel.itemDescription, imageUrl: dbModel.imageUrl ?? "", location: location)
+        let item = DeliveryItem.init(id: (Int(dbModel.id)), itemDescription: dbModel.itemDescription, imageUrl: dbModel.imageUrl ?? AppConstants.kEmptyString, location: location)
         return item
     }
 }

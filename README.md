@@ -74,7 +74,7 @@ All business logics are handled in view model. View model is responsible to upda
 
 •    Please get API KEY from - https://developers.google.com/maps/documentation/embed/get-api-key
 
-•    Replace GOOGLEAPIKEY with API KEY in Constants.swift
+•    Replace googleAPIKey with API KEY in AppConstants.swift
 
 
 # ASSUMPTIONS

@@ -7,4 +7,3 @@ protocol APIManagerProtocol {
     **/
     func getDeliveriesFromServer(offset: Int, limit: Int, completionBlock: @escaping GetDeliveriesFromServerCompletion)
 }
-

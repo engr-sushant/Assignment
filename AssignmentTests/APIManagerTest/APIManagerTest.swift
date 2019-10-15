@@ -43,7 +43,6 @@ class APIManagerTest: XCTestCase {
                 expectedResult.fulfill()
             }
         }
-
         waitForExpectations(timeout: 60) { error in
             if let error = error {
                 XCTAssertNotNil(error, "Failed to get response from server")

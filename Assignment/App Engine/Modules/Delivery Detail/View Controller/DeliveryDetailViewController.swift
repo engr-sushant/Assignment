@@ -57,7 +57,7 @@ class DeliveryDetailViewController: UIViewController {
         
         //Setup Description Label
         itemDescriptionLbl.numberOfLines = DeliveryDetailConstatnt.zeroNumberOfLine
-        itemDescriptionLbl.textAlignment = NSTextAlignment.left
+        itemDescriptionLbl.textAlignment = .left
         
         //Setup Border View
         borderView.layer.borderColor = BorderViewConstants.borderColor.cgColor

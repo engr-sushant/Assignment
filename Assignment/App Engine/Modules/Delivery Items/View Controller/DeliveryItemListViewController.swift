@@ -52,7 +52,6 @@ class DeliveryItemListViewController: UIViewController {
         self.view.backgroundColor = UIColor.white
         self.view.addSubview(tableView)
         
-        //Adding constraint to Map View
         let cornerAnchorForTableView = ConrnerAnchor(top    : (self.topLayoutGuide.bottomAnchor, ViewConstraintConstants.zeroPaddingConstant),
                                                    bottom   : (self.bottomLayoutGuide.topAnchor, ViewConstraintConstants.zeroPaddingConstant),
                                                    left     : (self.view.leftAnchor, ViewConstraintConstants.zeroPaddingConstant),
