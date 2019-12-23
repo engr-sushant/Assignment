@@ -177,7 +177,7 @@ extension DeliveryItemListViewController: UITableViewDataSource, UITableViewDele
         }
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let maxHght = tableView.contentSize.height - self.tableView.bounds.size.height
         viewModel.checkBottomDragging(tblOffset: tableView.contentOffset.y, maxHght: maxHght)
     }

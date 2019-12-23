@@ -4,6 +4,7 @@ import CoreData
 
 class CoreDataManager {
     
+    fileprivate var new = 0
     static let shared: CoreDataManager = {
         return CoreDataManager()
     }()
@@ -53,6 +54,8 @@ extension CoreDataManager: CoredataManagerProtocol {
                 fatalError("\(error)")
             }
         }
+        
+        print(new)
     }
     
     // MARK: - Delete Delivery Items From Local DB
@@ -87,4 +90,8 @@ extension CoreDataManager: CoredataManagerProtocol {
             completion(items, error)
         }
     }
+}
+
+class CoreDataManagerNew {
+    var mg: CoreDataManager!
 }
